@@ -44,6 +44,27 @@ public class StateInitializer {
         List<MatchBox> secondMoveStates = generateNextMatchboxStates(matchBoxs,2);
         matchBoxs.addAll(secondMoveStates);
         
+        List<MatchBox> thirdMoveStates = generateNextMatchboxStates(secondMoveStates,1);
+        matchBoxs.addAll(thirdMoveStates);
+        
+        List<MatchBox> fourthMoveStates = generateNextMatchboxStates(thirdMoveStates,2);
+        matchBoxs.addAll(fourthMoveStates);
+        
+        List<MatchBox> fifthMoveStates = generateNextMatchboxStates(fourthMoveStates,1);
+        matchBoxs.addAll(fifthMoveStates);
+        
+        List<MatchBox> sixthMoveStates = generateNextMatchboxStates(fifthMoveStates,2);
+        matchBoxs.addAll(sixthMoveStates);
+        
+        List<MatchBox> seventhMoveStates = generateNextMatchboxStates(sixthMoveStates,1);
+        matchBoxs.addAll(seventhMoveStates);
+        
+        List<MatchBox> eightMoveStates = generateNextMatchboxStates(seventhMoveStates,2);
+        matchBoxs.addAll(eightMoveStates);
+        
+        List<MatchBox> ninthMoveStates = generateNextMatchboxStates(eightMoveStates,1);
+        matchBoxs.addAll(ninthMoveStates);
+        
         return matchBoxs;
     }
     
@@ -56,7 +77,7 @@ public class StateInitializer {
             }
             for(int j=0; j<9; j++){
                 if(matchBox.getState()[j]==0){
-                    
+                    //TODO need to check if this state already exists or not and then make a decision on it 
                 }
             }
         }
@@ -65,10 +86,65 @@ public class StateInitializer {
     
     public static boolean isMatchBoxStateValidForNextMove(int[] state) {
         
-        //TODO check if this state has WON and return false if it is
-        //Write a function to check if anyone WON in this state
+        return gameWonByWhom(state)==0;
+    }
+    
+    public static int gameWonByWhom(int[] state) {
         
-        return false;
+        // Checking if Player 1 has WON
+        if(state[0]==1 && state[1]==1 && state[2]==1) {
+            return 1;
+        }
+        if(state[3]==1 && state[4]==1 && state[5]==1) {
+            return 1;
+        }
+        if(state[6]==1 && state[7]==1 && state[8]==1) {
+            return 1;
+        }
+        if(state[0]==1 && state[3]==1 && state[6]==1) {
+            return 1;
+        }
+        if(state[1]==1 && state[4]==1 && state[7]==1) {
+            return 1;
+        }
+        if(state[2]==1 && state[5]==1 && state[8]==1) {
+            return 1;
+        }
+        if(state[0]==1 && state[4]==1 && state[8]==1) {
+            return 1;
+        }
+        if(state[2]==1 && state[4]==1 && state[6]==1) {
+            return 1;
+        }
+        
+        // Checking if Player 2 has WON
+        if(state[0]==2 && state[1]==2 && state[2]==2) {
+            return 2;
+        }
+        if(state[3]==2 && state[4]==2 && state[5]==2) {
+            return 2;
+        }
+        if(state[6]==2 && state[7]==2 && state[8]==2) {
+            return 2;
+        }
+        if(state[0]==2 && state[3]==2 && state[6]==2) {
+            return 2;
+        }
+        if(state[1]==2 && state[4]==2 && state[7]==2) {
+            return 2;
+        }
+        if(state[2]==2 && state[5]==2 && state[8]==2) {
+            return 2;
+        }
+        if(state[0]==2 && state[4]==2 && state[8]==2) {
+            return 2;
+        }
+        if(state[2]==2 && state[4]==2 && state[6]==2) {
+            return 2;
+        }
+        
+        //Game yet to complete
+        return 0;
     }
     
     public static Map<MatchBox,Beads> generateAllInitialMatchBoxStates(List<MatchBox> matchBoxs) {
