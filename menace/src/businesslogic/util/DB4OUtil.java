@@ -66,19 +66,20 @@ public class DB4OUtil {
     }
     
     public MenaceGame retrieveGameState(){
+        
         ObjectContainer conn = createConnection();
         ObjectSet<MenaceGame> menaceGameStates = conn.query(MenaceGame.class);
         MenaceGame menaceGame;
         if (menaceGameStates.isEmpty()){
-            logger.info("Not found any Pre-trained states from DBo4");
+            logger.info("Not found any Pre-Trained states from DBo4");
             menaceGame = InitilaizeGame.initialize();
         }
         else{
+            logger.info("Retreiving the Pre-Trained states from DBo4");
             menaceGame = menaceGameStates.get(menaceGameStates.size() - 1);
         }
         conn.close();
         return menaceGame;
     }
-    
     
 }

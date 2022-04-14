@@ -27,15 +27,22 @@ public class InitilaizeGame {
         logger.info("Creating basic default Menace game state without any training");
         MenaceTrainedState menaceTrainedState = new MenaceTrainedState();
         List<MatchBox> matchBoxStates = new ArrayList<>();
+        
+        logger.info("Adding inital starting states of matchboxes to list");
         matchBoxStates.add(new MatchBox(new int[]{1,0,0,0,0,0,0,0,0}));
         matchBoxStates.add(new MatchBox(new int[]{0,1,0,0,0,0,0,0,0}));
         matchBoxStates.add(new MatchBox(new int[]{0,0,0,0,1,0,0,0,0}));
         
+        logger.info("Getting all possible states of the matchBoxes");
         matchBoxStates = StateInitializer.getAllPossibleMatchBoxStates(matchBoxStates);
+        logger.info("Found no of MatchBox states ::: " + matchBoxStates.size());
+        
+        logger.info("Adding all Bead states to the corresponding matchBox in a HashMap");
         Map<MatchBox,Beads> matchBoxes = StateInitializer.generateAllInitialMatchBoxStates(matchBoxStates);
         menaceTrainedState.setMatchBoxes(matchBoxes);
         MenaceGame menaceGame = new MenaceGame(menaceTrainedState);
         
+        logger.info("Done creating all the MatchBox states and possible Beads");
         return menaceGame;
     }
     
