@@ -6,6 +6,8 @@ package userinterface;
 
 import businesslogic.model.MenaceGame;
 import businesslogic.util.DB4OUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -17,11 +19,13 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     
+    private static final Logger logger = LoggerFactory.getLogger(MainJFrame.class);
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     private MenaceGame menaceGame;
     
     public MainJFrame() {
         initComponents();
+        logger.info("Trying to retrive Trained states from DBo4");
         menaceGame = dB4OUtil.retrieveGameState();
         this.setSize(1680, 1050);
     }
@@ -35,21 +39,93 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        mainjSplitPane = new javax.swing.JSplitPane();
+        leftjPanel = new javax.swing.JPanel();
+        trainjButton = new javax.swing.JButton();
+        playjButton = new javax.swing.JButton();
+        rightjPanel = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        trainjButton.setText("Train");
+        trainjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trainjButtonActionPerformed(evt);
+            }
+        });
+
+        playjButton.setText("Play");
+        playjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playjButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout leftjPanelLayout = new javax.swing.GroupLayout(leftjPanel);
+        leftjPanel.setLayout(leftjPanelLayout);
+        leftjPanelLayout.setHorizontalGroup(
+            leftjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftjPanelLayout.createSequentialGroup()
+                .addGroup(leftjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(leftjPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(playjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, leftjPanelLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(trainjButton)))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        leftjPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {playjButton, trainjButton});
+
+        leftjPanelLayout.setVerticalGroup(
+            leftjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftjPanelLayout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(trainjButton)
+                .addGap(18, 18, 18)
+                .addComponent(playjButton)
+                .addContainerGap(290, Short.MAX_VALUE))
+        );
+
+        leftjPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {playjButton, trainjButton});
+
+        mainjSplitPane.setLeftComponent(leftjPanel);
+
+        javax.swing.GroupLayout rightjPanelLayout = new javax.swing.GroupLayout(rightjPanel);
+        rightjPanel.setLayout(rightjPanelLayout);
+        rightjPanelLayout.setHorizontalGroup(
+            rightjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 682, Short.MAX_VALUE)
+        );
+        rightjPanelLayout.setVerticalGroup(
+            rightjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 464, Short.MAX_VALUE)
+        );
+
+        mainjSplitPane.setRightComponent(rightjPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 787, Short.MAX_VALUE)
+            .addComponent(mainjSplitPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addComponent(mainjSplitPane)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void trainjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainjButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_trainjButtonActionPerformed
+
+    private void playjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playjButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_playjButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,5 +163,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel leftjPanel;
+    private javax.swing.JSplitPane mainjSplitPane;
+    private javax.swing.JButton playjButton;
+    private javax.swing.JPanel rightjPanel;
+    private javax.swing.JButton trainjButton;
     // End of variables declaration//GEN-END:variables
 }

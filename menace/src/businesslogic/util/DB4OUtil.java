@@ -11,6 +11,8 @@ import com.db4o.ObjectSet;
 import com.db4o.config.EmbeddedConfiguration;
 import com.db4o.ta.TransparentPersistenceSupport;
 import java.nio.file.Paths;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -18,7 +20,8 @@ import java.nio.file.Paths;
  */
 public class DB4OUtil {
     
-    private static final String FILENAME = Paths.get("Databank.db4o").toAbsolutePath().toString();// path to the data store
+    private static final Logger logger = LoggerFactory.getLogger(DB4OUtil.class);
+    private static final String FILENAME = Paths.get("Databank.db4o").toAbsolutePath().toString();
     private static DB4OUtil dB4OUtil;
     
     public synchronized static DB4OUtil getInstance(){
@@ -64,10 +67,11 @@ public class DB4OUtil {
     
     public MenaceGame retrieveGameState(){
         ObjectContainer conn = createConnection();
-        ObjectSet<MenaceGame> menaceGameStates = conn.query(MenaceGame.class); // Change to the object you want to save
+        ObjectSet<MenaceGame> menaceGameStates = conn.query(MenaceGame.class);
         MenaceGame menaceGame;
         if (menaceGameStates.isEmpty()){
-            menaceGame = InitilaizeGame.initialize();  // If there's no System in the record, create a new one
+            logger.info("Not found any Pre-trained states from DBo4");
+            menaceGame = InitilaizeGame.initialize();
         }
         else{
             menaceGame = menaceGameStates.get(menaceGameStates.size() - 1);
