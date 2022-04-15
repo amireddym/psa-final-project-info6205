@@ -5,12 +5,16 @@
 package businesslogic.model;
 
 import businesslogic.util.StatePrinter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author manojreddy
  */
 public class MatchBox {
+    
+    private static final Logger logger  = LoggerFactory.getLogger(MatchBox.class);
     
     private int[] state = new int[]{0,0,0,0,0,0,0,0,0};
 
@@ -34,6 +38,8 @@ public class MatchBox {
 
     @Override
     public boolean equals(Object obj) {
+        
+        logger.info("Called equals method to evaluate Equality");
         MatchBox matchBox = (MatchBox)obj;
         for(int i=0; i<getState().length; i++) {
             if(matchBox.getState()[i]!= getState()[i] ){

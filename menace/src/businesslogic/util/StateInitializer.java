@@ -42,36 +42,39 @@ public class StateInitializer {
     
     public static List<MatchBox> getAllPossibleMatchBoxStates(List<MatchBox> matchBoxs) {
         
-        logger.info("Generating 2nd possible state moves from 1st move");
+        logger.info("*****Generating 2nd possible state moves from 1st move");
         List<MatchBox> secondMoveStates = generateNextMatchboxStates(matchBoxs,2);
-        matchBoxs.addAll(secondMoveStates);
         
-        logger.info("Generating 3rd possible state moves from 2st move");
+        logger.info("*****Generating 3rd possible state moves from 2st move");
         List<MatchBox> thirdMoveStates = generateNextMatchboxStates(secondMoveStates,1);
-        matchBoxs.addAll(thirdMoveStates);
         
-        logger.info("Generating 4th possible state moves from 3rd move");
+        logger.info("*****Generating 4th possible state moves from 3rd move");
         List<MatchBox> fourthMoveStates = generateNextMatchboxStates(thirdMoveStates,2);
-        matchBoxs.addAll(fourthMoveStates);
         
-        logger.info("Generating 5th possible state moves from 4th move");
+        logger.info("*****Generating 5th possible state moves from 4th move");
         List<MatchBox> fifthMoveStates = generateNextMatchboxStates(fourthMoveStates,1);
-        matchBoxs.addAll(fifthMoveStates);
         
-        logger.info("Generating 6th possible state moves from 5th move");
+        logger.info("*****Generating 6th possible state moves from 5th move");
         List<MatchBox> sixthMoveStates = generateNextMatchboxStates(fifthMoveStates,2);
-        matchBoxs.addAll(sixthMoveStates);
         
-        logger.info("Generating 7th possible state moves from 6th move");
+        logger.info("*****Generating 7th possible state moves from 6th move");
         List<MatchBox> seventhMoveStates = generateNextMatchboxStates(sixthMoveStates,1);
-        matchBoxs.addAll(seventhMoveStates);
         
-        logger.info("Generating 8th possible state moves from 7th move");
+        logger.info("*****Generating 8th possible state moves from 7th move");
         List<MatchBox> eightMoveStates = generateNextMatchboxStates(seventhMoveStates,2);
-        matchBoxs.addAll(eightMoveStates);
         
-        logger.info("Generating 9th possible state moves from 8th move");
+        logger.info("******Generating 9th possible state moves from 8th move");
         List<MatchBox> ninthMoveStates = generateNextMatchboxStates(eightMoveStates,1);
+        
+        
+        logger.info("***** Adding all Different states possible at last ******");
+        matchBoxs.addAll(secondMoveStates);
+        matchBoxs.addAll(thirdMoveStates);
+        matchBoxs.addAll(fourthMoveStates);
+        matchBoxs.addAll(fifthMoveStates);
+        matchBoxs.addAll(sixthMoveStates);
+        matchBoxs.addAll(seventhMoveStates);
+        matchBoxs.addAll(eightMoveStates);
         matchBoxs.addAll(ninthMoveStates);
         
         logger.info("Added 0 state i.e the starting state");
@@ -94,7 +97,7 @@ public class StateInitializer {
             for(int j=0; j<9; j++){
                 if(matchBox.getState()[j]==0){
                     //TODO need to check if this state already exists or not and then make a decision on it
-                    int[] state = matchBox.getState();
+                    int[] state = matchBox.getState().clone();
                     state[j]=user;
                     if(!stateAlreadyExists(nextStates, state)) {
                         MatchBox newMatchBox = new MatchBox(state);
