@@ -44,21 +44,27 @@ public class StateInitializer {
         
         logger.info("*****Generating 2nd possible state moves from 1st move");
         List<MatchBox> secondMoveStates = generateNextMatchboxStates(matchBoxs,2);
+        logger.info("*******Found different states for 2nd move : " + secondMoveStates.size());
         
         logger.info("*****Generating 3rd possible state moves from 2st move");
         List<MatchBox> thirdMoveStates = generateNextMatchboxStates(secondMoveStates,1);
+        logger.info("*******Found different states for 3rd move : " + thirdMoveStates.size());
         
         logger.info("*****Generating 4th possible state moves from 3rd move");
         List<MatchBox> fourthMoveStates = generateNextMatchboxStates(thirdMoveStates,2);
+        logger.info("*******Found different states for 4th move : " + fourthMoveStates.size());
         
         logger.info("*****Generating 5th possible state moves from 4th move");
         List<MatchBox> fifthMoveStates = generateNextMatchboxStates(fourthMoveStates,1);
+        logger.info("*******Found different states for 5th move : " + fifthMoveStates.size());
         
         logger.info("*****Generating 6th possible state moves from 5th move");
         List<MatchBox> sixthMoveStates = generateNextMatchboxStates(fifthMoveStates,2);
+        logger.info("*******Found different states for 5th move : " + fifthMoveStates.size());
         
         logger.info("*****Generating 7th possible state moves from 6th move");
         List<MatchBox> seventhMoveStates = generateNextMatchboxStates(sixthMoveStates,1);
+        logger.info("*******Found different states for 5th move : " + fifthMoveStates.size());
         
         logger.info("*****Generating 8th possible state moves from 7th move");
         List<MatchBox> eightMoveStates = generateNextMatchboxStates(seventhMoveStates,2);
@@ -100,11 +106,15 @@ public class StateInitializer {
                     int[] state = matchBox.getState().clone();
                     state[j]=user;
                     if(!stateAlreadyExists(nextStates, state)) {
+                        
+                        logger.info(StatePrinter.getCurrentStateInString(state));
                         MatchBox newMatchBox = new MatchBox(state);
                         nextStates.add(newMatchBox);
+                        logger.info("STATE ADDED ::: " + StatePrinter.getCurrentStateInString(state) );
                     }
                 }
             }
+            logger.info("***** States found so far ***** " + nextStates.size());
         }
         return nextStates;
     }
@@ -177,7 +187,7 @@ public class StateInitializer {
         
         logger.info("Checking the Flipped state for finding if its a Duplicate");
         //Flip state
-        rotatedState = flipState(rotatedState);
+        rotatedState = flipState(state2);
         matchingInfo.incrementFlips();
         matchingInfo.setMatched(true);
         for(int i=0; i< 9; i++) {
