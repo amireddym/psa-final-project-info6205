@@ -94,10 +94,10 @@ public class StateInitializer {
         logger.info("Starting states generation");
         List<MatchBox> nextStates = new ArrayList<>();
         for (MatchBox matchBox : matchBoxs) {
-            logger.info("Checking if we can proceed ahead with the current move");
+            //logger.info("Checking if we can proceed ahead with the current move");
             if(!isMatchBoxStateValidForNextMove(matchBox.getState())){
                 
-                logger.info("This state has already has a WINNER");
+                //logger.info("This state has already has a WINNER");
                 continue;
             }
             for(int j=0; j<9; j++){
@@ -107,7 +107,7 @@ public class StateInitializer {
                     state[j]=user;
                     if(!stateAlreadyExists(nextStates, state)) {
                         
-                        logger.info(StatePrinter.getCurrentStateInString(state));
+//                        logger.info(StatePrinter.getCurrentStateInString(state));
                         MatchBox newMatchBox = new MatchBox(state);
                         nextStates.add(newMatchBox);
                         logger.info("STATE ADDED ::: " + StatePrinter.getCurrentStateInString(state) );
@@ -121,13 +121,15 @@ public class StateInitializer {
     
     public static boolean stateAlreadyExists(List<MatchBox> matchBoxs, int[] stateToCheck) {
         
-        logger.info("Checking if a state generated is already existed or not");
+//        logger.info("Checking if a state generated is already existed or not");
         for(MatchBox matchBox:matchBoxs) {
             
             int[] state1 = matchBox.getState().clone();
             int[] state2 = stateToCheck.clone();
             
-            return bothstatesAreSame(state1, state2).isMatched();               
+            if(bothstatesAreSame(state1, state2).isMatched()){
+               return true;
+            }               
         }
         
         return false;
@@ -137,9 +139,10 @@ public class StateInitializer {
         
         MatchingInfo matchingInfo = new MatchingInfo(true, 0, 0);
         
-        logger.info("Checking the 1st rotated state for finding if its a Duplicate");
+//        logger.info("Checking the 1st rotated state for finding if its a Duplicate");
         //1st rotation
         int[] rotatedState = rotateState90(state2);
+        StatePrinter.getCurrentStateInString(rotatedState);
         matchingInfo.incrementRotation();
         matchingInfo.setMatched(true);
         for(int i=0; i< 9; i++) {
@@ -153,9 +156,10 @@ public class StateInitializer {
             return matchingInfo;
         }
         
-        logger.info("Checking the 2nd rotated state for finding if its a Duplicate");
+//        logger.info("Checking the 2nd rotated state for finding if its a Duplicate");
         //2nd rotation
         rotatedState = rotateState90(rotatedState);
+        StatePrinter.getCurrentStateInString(rotatedState);
         matchingInfo.incrementRotation();
         matchingInfo.setMatched(true);
         for(int i=0; i< 9; i++) {
@@ -169,9 +173,10 @@ public class StateInitializer {
             return matchingInfo;
         }
         
-        logger.info("Checking the 3rd rotated state for finding if its a Duplicate");
+//        logger.info("Checking the 3rd rotated state for finding if its a Duplicate");
         //3rd rotation
         rotatedState = rotateState90(rotatedState);
+        StatePrinter.getCurrentStateInString(rotatedState);
         matchingInfo.incrementRotation();
         matchingInfo.setMatched(true);
         for(int i=0; i< 9; i++) {
@@ -185,9 +190,10 @@ public class StateInitializer {
             return matchingInfo;
         }
         
-        logger.info("Checking the Flipped state for finding if its a Duplicate");
+//        logger.info("Checking the Flipped state for finding if its a Duplicate");
         //Flip state
         rotatedState = flipState(state2);
+        StatePrinter.getCurrentStateInString(rotatedState);
         matchingInfo.incrementFlips();
         matchingInfo.setMatched(true);
         for(int i=0; i< 9; i++) {
@@ -201,9 +207,10 @@ public class StateInitializer {
             return matchingInfo;
         }
         
-        logger.info("Checking the 1st rotated state after Flipping for finding if its a Duplicate");
+//        logger.info("Checking the 1st rotated state after Flipping for finding if its a Duplicate");
         //1st rotation
         rotatedState = rotateState90(rotatedState);
+        StatePrinter.getCurrentStateInString(rotatedState);
         matchingInfo.incrementRotation();
         matchingInfo.setMatched(true);
         for(int i=0; i< 9; i++) {
@@ -217,9 +224,10 @@ public class StateInitializer {
             return matchingInfo;
         }
         
-        logger.info("Checking the 2nd rotated state after Flipping for finding if its a Duplicate");
+//        logger.info("Checking the 2nd rotated state after Flipping for finding if its a Duplicate");
         //2nd rotation
         rotatedState = rotateState90(rotatedState);
+        StatePrinter.getCurrentStateInString(rotatedState);
         matchingInfo.incrementRotation();
         matchingInfo.setMatched(true);
         for(int i=0; i< 9; i++) {
@@ -233,9 +241,10 @@ public class StateInitializer {
             return matchingInfo;
         }
         
-        logger.info("Checking the 3rd rotated state after Flipping for finding if its a Duplicate");
+//        logger.info("Checking the 3rd rotated state after Flipping for finding if its a Duplicate");
         //3rd rotation
         rotatedState = rotateState90(rotatedState);
+        StatePrinter.getCurrentStateInString(rotatedState);
         matchingInfo.incrementRotation();
         matchingInfo.setMatched(true);
         for(int i=0; i< 9; i++) {
@@ -254,7 +263,7 @@ public class StateInitializer {
     
     public static int[] flipState(int[] state) {
         
-        logger.info("Flipping the state");
+//        logger.info("Flipping the state");
         int[] flippedState = new int[9];
         
         flippedState[2] = state[0];
@@ -264,12 +273,15 @@ public class StateInitializer {
         flippedState[3] = state[5];
         flippedState[6] = state[8];
         
+        flippedState[1] = state[1];
+        flippedState[4] = state[4];
+        
         return flippedState;
     }
     
     public static int[] rotateState90(int[] state) {
         
-        logger.info("Rotating the state by 90 degrees");
+//        logger.info("Rotating the state by 90 degrees");
         int[] rotatedState = new int[9];
         
         rotatedState[0] = state[6];

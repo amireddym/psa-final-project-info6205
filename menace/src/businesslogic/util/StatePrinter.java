@@ -17,7 +17,7 @@ public class StatePrinter {
     
     public static String getCurrentStateInString(int[] state) {
         
-        logger.info("Getting state in the String format");
+//        logger.info("Getting state in the String format");
         StringBuilder stringBuilder = new StringBuilder();
         for(int i=0; i < state.length; i ++) {
             stringBuilder.append(state[i]);
