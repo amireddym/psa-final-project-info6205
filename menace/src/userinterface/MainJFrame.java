@@ -8,6 +8,8 @@ import businesslogic.model.MenaceGame;
 import businesslogic.util.DB4OUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import userinterface.play.PlayJPanel;
+import userinterface.train.TrainJPanel;
 
 /**
  *
@@ -121,10 +123,14 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void trainjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainjButtonActionPerformed
         // TODO add your handling code here:
+        TrainJPanel trainJPanel= new TrainJPanel(menaceGame);
+        mainjSplitPane.setRightComponent(trainJPanel);
     }//GEN-LAST:event_trainjButtonActionPerformed
 
     private void playjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playjButtonActionPerformed
         // TODO add your handling code here:
+        PlayJPanel playJPanel= new PlayJPanel(menaceGame);
+        mainjSplitPane.setRightComponent(playJPanel);
     }//GEN-LAST:event_playjButtonActionPerformed
 
     /**
