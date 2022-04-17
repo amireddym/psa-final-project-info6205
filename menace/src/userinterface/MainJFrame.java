@@ -46,6 +46,11 @@ public class MainJFrame extends javax.swing.JFrame {
         rightjPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         trainjButton.setText("Train");
         trainjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +131,12 @@ public class MainJFrame extends javax.swing.JFrame {
     private void playjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playjButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_playjButtonActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        logger.info("Windowclosed");
+        dB4OUtil.storeGameState(menaceGame);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
