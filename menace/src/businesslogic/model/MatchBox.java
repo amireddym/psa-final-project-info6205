@@ -35,20 +35,5 @@ public class MatchBox {
         
         return StatePrinter.getCurrentStateInString(getState());
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        
-        logger.info("Called equals method to evaluate Equality");
-        MatchBox matchBox = (MatchBox)obj;
-        for(int i=0; i<getState().length; i++) {
-            if(matchBox.getState()[i]!= getState()[i] ){
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    
     
 }

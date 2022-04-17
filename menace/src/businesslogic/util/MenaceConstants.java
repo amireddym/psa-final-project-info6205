@@ -22,7 +22,10 @@ public class MenaceConstants {
     // No of Beads adjusted in Matchbox in state of DRAW
     public final static int DELTA = 0;
     
+    // String to Welcome User in UI
     public final static String GREET_USER = "Welcome to Menace";
     
+    // File name to store the trained states in CSV
+    public final static String MENACE_TRAINED_CONSTANTS_FILE_NAME = "trained.csv";
     
 }

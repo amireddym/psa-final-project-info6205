@@ -10,7 +10,7 @@ package businesslogic.model;
  */
 public class MenaceGame {
     
-    private MenaceTrainedState menaceTrainedState;
+    private MenaceTrainedState menaceTrainedState = new MenaceTrainedState();
 
     public MenaceGame(MenaceTrainedState menaceTrainedState) {
         this.menaceTrainedState = menaceTrainedState;
