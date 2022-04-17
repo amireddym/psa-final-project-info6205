@@ -140,6 +140,20 @@ public class StateInitializer {
         
         MatchingInfo matchingInfo = new MatchingInfo(true, 0, 0);
         
+        //Comparing directly without Modification
+        StatePrinter.getCurrentStateInString(state2);
+        matchingInfo.setMatched(true);
+        for(int i=0; i< 9; i++) {
+            if(state1[i]!=state2[i]){
+                matchingInfo.setMatched(false);
+                break;
+            }
+        }
+        if(matchingInfo.isMatched()){
+//            logger.info("State already exists");
+            return matchingInfo;
+        }
+        
 //        logger.info("Checking the 1st rotated state for finding if its a Duplicate");
         //1st rotation
         int[] rotatedState = rotateState90(state2);
