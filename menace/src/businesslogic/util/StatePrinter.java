@@ -4,6 +4,9 @@
  */
 package businesslogic.util;
 
+import businesslogic.model.Bead;
+import businesslogic.model.Beads;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,8 +52,31 @@ public class StatePrinter {
         System.out.println("----------");
         System.out.println(" " + stateChars[6] + " | " + stateChars[7] + " | " + stateChars[8] );
         
+    }
+    
+    public static String getStateInCSVformat(int[] state) {
         
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i=0;i<8;i++) {
+            
+            stringBuilder.append(state[i]);
+            stringBuilder.append(",");
+        }
+        stringBuilder.append(state[8]);
+        return stringBuilder.toString();
+    }
+    
+    public static String getBeadsInCSVformat(Beads beads) {
         
+        List<Bead> beadsList = beads.getPositions();
+        int[] beadState = new int[9];
+        
+        for(Bead bead:beadsList) {
+            
+            beadState[bead.getBoardPosition()] = bead.getCurrentCount();
+        }
+        
+        return getStateInCSVformat(beadState);
     }
     
 }

@@ -5,6 +5,7 @@
 package userinterface;
 
 import businesslogic.model.MenaceGame;
+import businesslogic.util.CSVutil;
 import businesslogic.util.DB4OUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,9 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         logger.info("Trying to retrive Trained states from DBo4");
-        menaceGame = dB4OUtil.retrieveGameState();
+        menaceGame = CSVutil.getTrainedMenaceGameFromCSV();
+        
+//        menaceGame = dB4OUtil.retrieveGameState();
         this.setSize(1680, 1050);
     }
 
@@ -141,7 +144,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         logger.info("Windowclosed");
-        dB4OUtil.storeGameState(menaceGame);
+//        dB4OUtil.storeGameState(menaceGame);
     }//GEN-LAST:event_formWindowClosing
 
     /**

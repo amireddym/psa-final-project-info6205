@@ -42,7 +42,7 @@ public class MenaceSelfTrain {
            
            while(!gameOver) {
                
-               
+                
            }
            
            MenaceStateUpdater.updateMenaceBeadsToTrain(menaceGame, currentState, menaceChosen, gameStartedBySystem, gameStatus);
