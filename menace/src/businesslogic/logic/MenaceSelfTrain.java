@@ -4,10 +4,18 @@
  */
 package businesslogic.logic;
 
+import businesslogic.model.Bead;
+import businesslogic.model.Beads;
 import businesslogic.model.MatchBox;
 import businesslogic.model.MenaceGame;
+import businesslogic.util.StateInitializer;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -15,13 +23,15 @@ import java.util.List;
  */
 public class MenaceSelfTrain {
     
+    private static final Logger logger = LoggerFactory.getLogger(MenaceSelfTrain.class);
+    
     private MenaceGame menaceGame;
     
     private int iterations;
     
     private boolean gameStartedBySystem = true;
     
-    private int gameStatus = 0;
+    private int gameStatus = -1;
 
     private List<MatchBox> currentState = new ArrayList<>();
     
@@ -36,20 +46,159 @@ public class MenaceSelfTrain {
         
         for(int i=0; i< iterations; i++) {
            
-           boolean gameOver = false;
-           
+           boolean gameOver = false;           
            currentState.add(new MatchBox(new int[]{0,0,0,0,0,0,0,0,0}));
            
            while(!gameOver) {
                
+               if(gameStartedBySystem){
+                   logger.info("System is making a move");
+                   makeMoveBySystem(currentState, menaceChosen);
+                   gameStatus = StateInitializer.gameWonByWhom(currentState.get(currentState.size()-1).getState());
+                   if(gameStatus!=0) {
+                       logger.info("SYSYTEM WON");
+                       gameOver=true;
+                       break;
+                   }
+                   if(sumOfState(currentState.get(currentState.size()-1).getState())==13){
+                       logger.info("GAME DRAW");
+                       gameOver=true;
+                       gameStatus=0;
+                       break;
+                   }
+                   logger.info("Random is making a move");
+                   makeMoveRandom(currentState);
+                   gameStatus = StateInitializer.gameWonByWhom(currentState.get(currentState.size()-1).getState());
+                   if(gameStatus!=0) {
+                       logger.info("RANDOM MOVE WON");
+                       gameOver=true;
+                       break;
+                   }
+                   if(sumOfState(currentState.get(currentState.size()-1).getState())==13){
+                       logger.info("GAME DRAW");
+                       gameOver=true;
+                       gameStatus=0;
+                       break;
+                   }
+               }else{
+                   
+                   logger.info("Random is making a move");
+                   makeMoveRandom(currentState);
+                   gameStatus = StateInitializer.gameWonByWhom(currentState.get(currentState.size()-1).getState());
+                   if(gameStatus!=0) {
+                       logger.info("RANDOM MOVE WON");
+                       gameOver=true;
+                       break;
+                   }
+                   if(sumOfState(currentState.get(currentState.size()-1).getState())==13){
+                       logger.info("GAME DRAW");
+                       gameOver=true;
+                       gameStatus=0;
+                       break;
+                   }
+                   
+                   logger.info("System is making a move");
+                   makeMoveBySystem(currentState, menaceChosen);
+                   gameStatus = StateInitializer.gameWonByWhom(currentState.get(currentState.size()-1).getState());
+                   if(gameStatus!=0) {
+                       logger.info("SYSYTEM WON");
+                       gameOver=true;
+                       break;
+                   }
+                   if(sumOfState(currentState.get(currentState.size()-1).getState())==13){
+                       logger.info("GAME DRAW");
+                       gameOver=true;
+                       gameStatus=0;
+                       break;
+                   }
+               }
                 
            }
            
            MenaceStateUpdater.updateMenaceBeadsToTrain(menaceGame, currentState, menaceChosen, gameStartedBySystem, gameStatus);
+           gameStartedBySystem=!gameStartedBySystem;
+           gameStatus= -1;
         }
 
     }
+    
+    public int sumOfState(int[] state) {
+        
+        int sum =0;
+        for(int i=0;i<9;i++) {
+            
+            sum+=state[i];
+        }
+        return sum;
+    }
+    
+    public void makeMoveRandom(List<MatchBox> currentState) {
+        
+        int[] lastState = currentState.get(currentState.size()-1).getState().clone();
+        int count = 0;
+        List<Integer> freeStates = new ArrayList<>();
+        for(int i=0;i<9;i++){
+            if(lastState[i]==0){
+                freeStates.add(i);
+                count++;
+            }
+        }
+        Random random = new Random();
+        int ran = random.nextInt(count);
+        
+        //TODO update the chosen state
+        if(gameStartedBySystem){
+            lastState[freeStates.get(ran)]= 2;
+        }else{
+            lastState[freeStates.get(ran)]= 1;
+        }
+        
+        // Need to optimize by taking the value from HASH-MAP rather than creating a new Object
+        currentState.add(new MatchBox(lastState));
+    }
+    
+    public void makeMoveBySystem(List<MatchBox> currentState, List<Integer> menaceChosen) {
+        
+        int[] lastState = currentState.get(currentState.size()-1).getState().clone();
+        Beads beadsState = menaceGame.getMenaceTrainedState().getMatchBoxes().get(currentState.get(currentState.size()-1));
+        logger.info("Printing Beads probabilities");
+        printBeadsProbablilityAndMakeMove(beadsState,menaceChosen);
+        if(gameStartedBySystem){
+            lastState[menaceChosen.get(menaceChosen.size()-1)] = 1;
+        }else{
+            lastState[menaceChosen.get(menaceChosen.size()-1)] = 2;
+        }
+        
+        // Need to optimize by taking the value from HASH-MAP rather than creating a new Object
+        currentState.add(new MatchBox(lastState));
+    }
 
+    public void printBeadsProbablilityAndMakeMove(Beads beadsState, List<Integer> menaceChosen) {
+        
+        int sum = 0;
+        for(Bead bead:beadsState.getPositions()){
+            
+            sum+=bead.getCurrentCount();
+        }
+        
+        for(Bead bead:beadsState.getPositions()){
+            
+            logger.info("Probability of choosing "+ bead.getBoardPosition()+" is "+ (float)(bead.getCurrentCount()/sum));
+        }
+        logger.info("System choosing a Random Move it can take");
+
+        Random random = new Random();
+        int randomNo = random.nextInt(sum)+1;
+        int chosenPosition=-1;
+        do{
+            randomNo-=beadsState.getPositions().get(chosenPosition+1).getCurrentCount();
+            chosenPosition++;
+        }while(randomNo>0);
+        
+        menaceChosen.add(chosenPosition);
+    }
+    
+    
     public MenaceGame getMenaceGame() {
         return menaceGame;
     }
