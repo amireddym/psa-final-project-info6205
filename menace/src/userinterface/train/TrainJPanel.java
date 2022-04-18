@@ -6,6 +6,7 @@
 package userinterface.train;
 
 import businesslogic.model.MenaceGame;
+import businesslogic.logic.MenaceSelfTrain;
 import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -100,8 +101,11 @@ public class TrainJPanel extends javax.swing.JPanel {
         String iterationCount= iterationsCountField.getText();
 
         try{
-            int count= Integer.parseInt(iterationCount);
-                //TODO: need to call function for training
+            int iterations= Integer.parseInt(iterationCount);
+            //TODO: need to call function for training
+            MenaceSelfTrain menaceSelfTrain=new MenaceSelfTrain(menaceGame,iterations);
+            menaceSelfTrain.selfPlay();
+            
         }
         catch(Exception e){
             logger.info("Conversion from string to integer failed from user input");
