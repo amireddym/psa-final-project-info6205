@@ -79,22 +79,31 @@ public class PlayJPanel extends javax.swing.JPanel {
         gamejLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gamejLabel.setText("Welcome");
 
+        zerojLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         zerojLabel.setText("Zero");
 
+        onejLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         onejLabel1.setText("One");
 
+        twojLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         twojLabel.setText("Two");
 
+        fivejLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fivejLabel.setText("Five");
 
+        threejLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         threejLabel1.setText("Three");
 
+        fourjLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fourjLabel1.setText("Four");
 
+        eightjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         eightjLabel.setText("Eight");
 
+        sixjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         sixjLabel.setText("Six");
 
+        sevenjLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         sevenjLabel1.setText("Seven");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

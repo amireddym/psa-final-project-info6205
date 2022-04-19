@@ -93,46 +93,55 @@
     </Component>
     <Component class="javax.swing.JLabel" name="zerojLabel">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Zero"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="onejLabel1">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="One"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="twojLabel">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Two"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="fivejLabel">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Five"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="threejLabel1">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Three"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="fourjLabel1">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Four"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="eightjLabel">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Eight"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="sixjLabel">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Six"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="sevenjLabel1">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Seven"/>
       </Properties>
     </Component>
