@@ -16,13 +16,125 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
+                      <Component id="gamejLabel" min="-2" pref="622" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="260" max="-2" attributes="0"/>
+                              <Component id="zerojLabel" linkSize="1" min="-2" pref="141" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="threejLabel1" linkSize="1" alignment="1" min="-2" pref="141" max="-2" attributes="0"/>
+                                  <Component id="sixjLabel" linkSize="1" alignment="1" min="-2" pref="141" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="sevenjLabel1" linkSize="1" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Component id="fourjLabel1" linkSize="1" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Component id="onejLabel1" linkSize="1" min="-2" pref="141" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="fivejLabel" linkSize="1" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Component id="twojLabel" linkSize="1" min="-2" pref="141" max="-2" attributes="0"/>
+                          <Component id="eightjLabel" linkSize="1" min="-2" pref="141" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="278" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+              <Component id="gamejLabel" min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="zerojLabel" linkSize="2" alignment="3" min="-2" pref="101" max="-2" attributes="0"/>
+                  <Component id="onejLabel1" linkSize="2" alignment="3" min="-2" pref="101" max="-2" attributes="0"/>
+                  <Component id="twojLabel" linkSize="2" alignment="3" min="-2" pref="101" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="fivejLabel" linkSize="2" alignment="3" min="-2" pref="101" max="-2" attributes="0"/>
+                  <Component id="fourjLabel1" linkSize="2" alignment="3" min="-2" pref="101" max="-2" attributes="0"/>
+                  <Component id="threejLabel1" linkSize="2" alignment="3" min="-2" pref="101" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="sixjLabel" linkSize="2" alignment="3" min="-2" pref="101" max="-2" attributes="0"/>
+                      <Component id="sevenjLabel1" linkSize="2" alignment="3" min="-2" pref="101" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="eightjLabel" linkSize="2" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="202" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="gamejLabel">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Welcome"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="zerojLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Zero"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="onejLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="One"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="twojLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Two"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="fivejLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Five"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="threejLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Three"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="fourjLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Four"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="eightjLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Eight"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="sixjLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Six"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="sevenjLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Seven"/>
+      </Properties>
+    </Component>
+  </SubComponents>
 </Form>
