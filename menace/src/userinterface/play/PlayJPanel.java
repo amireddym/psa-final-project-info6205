@@ -18,30 +18,22 @@ public class PlayJPanel extends javax.swing.JPanel {
     private final static Logger logger = LoggerFactory.getLogger(PlayJPanel.class);
     
     private MenaceGame menaceGame;
+    
+    private int whoStarts = 0;
+    
+    private int[] states = new int[9];
 
     /**
      * Creates new form PlayJPanel
      */
     public PlayJPanel() {
         
-        initComponents();
-        int whoStarts = JOptionPane.showConfirmDialog(this, this, "Do you want to StartFirst", 0);
-        logger.info("User chosen :: "+ whoStarts);
-        while(whoStarts==-1) {
-            logger.info("User closed the Dialog Window");
-            whoStarts = JOptionPane.showConfirmDialog(this, this, "Do you want to StartFirst", 0);
-        }
-        if(whoStarts==0) {
-            logger.info("User has chosen to play first");
-        }else{
-            logger.info("System is going to play first");
-        }
     }
 
     public PlayJPanel(MenaceGame menaceGame) {
         
         this.menaceGame=menaceGame;
-        int whoStarts = JOptionPane.showConfirmDialog(this, this, "Do you want to StartFirst", 0);
+        whoStarts = JOptionPane.showConfirmDialog(this, this, "Do you want to StartFirst", 0);
         logger.info("User chosen :: "+ whoStarts);
         while(whoStarts==-1) {
             logger.info("User closed the Dialog Window");
@@ -67,44 +59,100 @@ public class PlayJPanel extends javax.swing.JPanel {
 
         gamejLabel = new javax.swing.JLabel();
         zerojLabel = new javax.swing.JLabel();
-        onejLabel1 = new javax.swing.JLabel();
+        onejLabel = new javax.swing.JLabel();
         twojLabel = new javax.swing.JLabel();
         fivejLabel = new javax.swing.JLabel();
-        threejLabel1 = new javax.swing.JLabel();
-        fourjLabel1 = new javax.swing.JLabel();
+        threejLabel = new javax.swing.JLabel();
+        fourjLabel = new javax.swing.JLabel();
         eightjLabel = new javax.swing.JLabel();
         sixjLabel = new javax.swing.JLabel();
-        sevenjLabel1 = new javax.swing.JLabel();
+        sevenjLabel = new javax.swing.JLabel();
 
+        gamejLabel.setFont(new java.awt.Font("Helvetica Neue", 3, 36)); // NOI18N
         gamejLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gamejLabel.setText("Welcome");
+        gamejLabel.setText("Welcome Back to Menace");
 
+        zerojLabel.setBackground(new java.awt.Color(153, 153, 153));
         zerojLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        zerojLabel.setText("Zero");
+        zerojLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        zerojLabel.setEnabled(false);
+        zerojLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                zerojLabelMouseClicked(evt);
+            }
+        });
 
-        onejLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        onejLabel1.setText("One");
+        onejLabel.setBackground(new java.awt.Color(153, 153, 153));
+        onejLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        onejLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        onejLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onejLabelMouseClicked(evt);
+            }
+        });
 
+        twojLabel.setBackground(new java.awt.Color(153, 153, 153));
         twojLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        twojLabel.setText("Two");
+        twojLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        twojLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                twojLabelMouseClicked(evt);
+            }
+        });
 
+        fivejLabel.setBackground(new java.awt.Color(153, 153, 153));
         fivejLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        fivejLabel.setText("Five");
+        fivejLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        fivejLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fivejLabelMouseClicked(evt);
+            }
+        });
 
-        threejLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        threejLabel1.setText("Three");
+        threejLabel.setBackground(new java.awt.Color(153, 153, 153));
+        threejLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        threejLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        threejLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                threejLabelMouseClicked(evt);
+            }
+        });
 
-        fourjLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        fourjLabel1.setText("Four");
+        fourjLabel.setBackground(new java.awt.Color(153, 153, 153));
+        fourjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fourjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        fourjLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fourjLabelMouseClicked(evt);
+            }
+        });
 
+        eightjLabel.setBackground(new java.awt.Color(153, 153, 153));
         eightjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        eightjLabel.setText("Eight");
+        eightjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        eightjLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eightjLabelMouseClicked(evt);
+            }
+        });
 
+        sixjLabel.setBackground(new java.awt.Color(153, 153, 153));
         sixjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sixjLabel.setText("Six");
+        sixjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        sixjLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sixjLabelMouseClicked(evt);
+            }
+        });
 
-        sevenjLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sevenjLabel1.setText("Seven");
+        sevenjLabel.setBackground(new java.awt.Color(153, 153, 153));
+        sevenjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sevenjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        sevenjLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sevenjLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -113,9 +161,6 @@ public class PlayJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(gamejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(260, 260, 260)
@@ -123,61 +168,141 @@ public class PlayJPanel extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(threejLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(threejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(sixjLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sevenjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fourjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(onejLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(sevenjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fourjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(onejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fivejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(twojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(eightjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(278, Short.MAX_VALUE))
+                            .addComponent(eightjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(gamejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(239, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {eightjLabel, fivejLabel, fourjLabel1, onejLabel1, sevenjLabel1, sixjLabel, threejLabel1, twojLabel, zerojLabel});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {eightjLabel, fivejLabel, fourjLabel, onejLabel, sevenjLabel, sixjLabel, threejLabel, twojLabel, zerojLabel});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
-                .addComponent(gamejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96)
+                .addComponent(gamejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(zerojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(onejLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(onejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(twojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fivejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fourjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(threejLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fourjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(threejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(sixjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(sevenjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(sevenjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(eightjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(202, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {eightjLabel, fivejLabel, fourjLabel1, onejLabel1, sevenjLabel1, sixjLabel, threejLabel1, twojLabel, zerojLabel});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {eightjLabel, fivejLabel, fourjLabel, onejLabel, sevenjLabel, sixjLabel, threejLabel, twojLabel, zerojLabel});
 
     }// </editor-fold>//GEN-END:initComponents
 
+    private void zerojLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zerojLabelMouseClicked
+        // TODO add your handling code here:
+        if(!ifStatePossible(states,0)){
+            JOptionPane.showMessageDialog(this, "Please Choose a valid position");
+            return;
+        }
+        
+    }//GEN-LAST:event_zerojLabelMouseClicked
+
+    private void onejLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onejLabelMouseClicked
+        // TODO add your handling code here:
+        if(!ifStatePossible(states,1)){
+            JOptionPane.showMessageDialog(this, "Please Choose a valid position");
+            return;
+        }
+    }//GEN-LAST:event_onejLabelMouseClicked
+
+    private void twojLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twojLabelMouseClicked
+        // TODO add your handling code here:
+        if(!ifStatePossible(states,2)){
+            JOptionPane.showMessageDialog(this, "Please Choose a valid position");
+            return;
+        }
+    }//GEN-LAST:event_twojLabelMouseClicked
+
+    private void threejLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_threejLabelMouseClicked
+        // TODO add your handling code here:
+        if(!ifStatePossible(states,3)){
+            JOptionPane.showMessageDialog(this, "Please Choose a valid position");
+            return;
+        }
+    }//GEN-LAST:event_threejLabelMouseClicked
+
+    private void fourjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fourjLabelMouseClicked
+        // TODO add your handling code here:
+        if(!ifStatePossible(states,4)){
+            JOptionPane.showMessageDialog(this, "Please Choose a valid position");
+            return;
+        }
+    }//GEN-LAST:event_fourjLabelMouseClicked
+
+    private void fivejLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fivejLabelMouseClicked
+        // TODO add your handling code here:
+        if(!ifStatePossible(states,5)){
+            JOptionPane.showMessageDialog(this, "Please Choose a valid position");
+            return;
+        }
+    }//GEN-LAST:event_fivejLabelMouseClicked
+
+    private void sixjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sixjLabelMouseClicked
+        // TODO add your handling code here:
+        if(!ifStatePossible(states,6)){
+            JOptionPane.showMessageDialog(this, "Please Choose a valid position");
+            return;
+        }
+    }//GEN-LAST:event_sixjLabelMouseClicked
+
+    private void sevenjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sevenjLabelMouseClicked
+        // TODO add your handling code here:
+        if(!ifStatePossible(states,7)){
+            JOptionPane.showMessageDialog(this, "Please Choose a valid position");
+            return;
+        }
+    }//GEN-LAST:event_sevenjLabelMouseClicked
+
+    private void eightjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eightjLabelMouseClicked
+        // TODO add your handling code here:
+        if(!ifStatePossible(states,8)){
+            JOptionPane.showMessageDialog(this, "Please Choose a valid position");
+            return;
+        }
+    }//GEN-LAST:event_eightjLabelMouseClicked
+
+    private boolean ifStatePossible(int[] states, int index) {
+        
+        return states[index]==0;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel eightjLabel;
     private javax.swing.JLabel fivejLabel;
-    private javax.swing.JLabel fourjLabel1;
+    private javax.swing.JLabel fourjLabel;
     private javax.swing.JLabel gamejLabel;
-    private javax.swing.JLabel onejLabel1;
-    private javax.swing.JLabel sevenjLabel1;
+    private javax.swing.JLabel onejLabel;
+    private javax.swing.JLabel sevenjLabel;
     private javax.swing.JLabel sixjLabel;
-    private javax.swing.JLabel threejLabel1;
+    private javax.swing.JLabel threejLabel;
     private javax.swing.JLabel twojLabel;
     private javax.swing.JLabel zerojLabel;
     // End of variables declaration//GEN-END:variables
