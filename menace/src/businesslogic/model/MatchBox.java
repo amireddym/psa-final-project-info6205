@@ -4,6 +4,7 @@
  */
 package businesslogic.model;
 
+import businesslogic.util.StateInitializer;
 import businesslogic.util.StatePrinter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,5 +36,20 @@ public class MatchBox {
         
         return StatePrinter.getCurrentStateInString(getState());
     }
+    
+    //TODO Need to update the function
+    @Override
+    public int hashCode() {
+        return super.hashCode(); 
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        
+        MatchBox matchBox = (MatchBox) obj;
+        return StateInitializer.bothstatesAreSame(state, matchBox.getState()).isMatched(); 
+    }
+    
+    
     
 }
