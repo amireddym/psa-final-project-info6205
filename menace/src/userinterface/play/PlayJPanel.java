@@ -4,6 +4,7 @@
  */
 package userinterface.play;
 
+import businesslogic.logic.MenaceHumanPlay;
 import businesslogic.model.MenaceGame;
 import javax.swing.JOptionPane;
 import org.slf4j.Logger;
@@ -22,29 +23,29 @@ public class PlayJPanel extends javax.swing.JPanel {
     private int whoStarts = 0;
     
     private int[] states = new int[9];
-
-    /**
-     * Creates new form PlayJPanel
-     */
-    public PlayJPanel() {
-        
-    }
+    
+    private MenaceHumanPlay menaceHumanPlay;
 
     public PlayJPanel(MenaceGame menaceGame) {
         
         this.menaceGame=menaceGame;
+        menaceHumanPlay = new MenaceHumanPlay(menaceGame);
         whoStarts = JOptionPane.showConfirmDialog(this, this, "Do you want to StartFirst", 0);
         logger.info("User chosen :: "+ whoStarts);
         while(whoStarts==-1) {
             logger.info("User closed the Dialog Window");
             whoStarts = JOptionPane.showConfirmDialog(this, this, "Do you want to StartFirst", 0);
         }
+        initComponents();
+        
         if(whoStarts==0) {
             logger.info("User has chosen to play first");
+            
         }else{
             logger.info("System is going to play first");
+            
         }
-        initComponents();
+        
         
     }
 
@@ -294,6 +295,14 @@ public class PlayJPanel extends javax.swing.JPanel {
         return states[index]==0;
     }
 
+    private void disableOnClick() {
+        
+    }
+    
+    private void enableOnClick() {
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel eightjLabel;
     private javax.swing.JLabel fivejLabel;
