@@ -5,7 +5,11 @@
 package userinterface.play;
 
 import businesslogic.logic.MenaceHumanPlay;
+import businesslogic.model.MatchBox;
 import businesslogic.model.MenaceGame;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +29,7 @@ public class PlayJPanel extends javax.swing.JPanel {
     private int[] states = new int[9];
     
     private MenaceHumanPlay menaceHumanPlay;
-
+    
     public PlayJPanel(MenaceGame menaceGame) {
         
         this.menaceGame=menaceGame;
@@ -43,7 +47,7 @@ public class PlayJPanel extends javax.swing.JPanel {
             
         }else{
             logger.info("System is going to play first");
-            
+            // run system making move function here once
         }
         
         
@@ -69,13 +73,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         sixjLabel = new javax.swing.JLabel();
         sevenjLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         gamejLabel.setFont(new java.awt.Font("Helvetica Neue", 3, 36)); // NOI18N
         gamejLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gamejLabel.setText("Welcome Back to Menace");
 
         zerojLabel.setBackground(new java.awt.Color(153, 153, 153));
         zerojLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        zerojLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        zerojLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         zerojLabel.setEnabled(false);
         zerojLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -85,7 +91,7 @@ public class PlayJPanel extends javax.swing.JPanel {
 
         onejLabel.setBackground(new java.awt.Color(153, 153, 153));
         onejLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        onejLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        onejLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         onejLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onejLabelMouseClicked(evt);
@@ -94,7 +100,7 @@ public class PlayJPanel extends javax.swing.JPanel {
 
         twojLabel.setBackground(new java.awt.Color(153, 153, 153));
         twojLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        twojLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        twojLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         twojLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 twojLabelMouseClicked(evt);
@@ -103,7 +109,7 @@ public class PlayJPanel extends javax.swing.JPanel {
 
         fivejLabel.setBackground(new java.awt.Color(153, 153, 153));
         fivejLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        fivejLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        fivejLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         fivejLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fivejLabelMouseClicked(evt);
@@ -112,7 +118,7 @@ public class PlayJPanel extends javax.swing.JPanel {
 
         threejLabel.setBackground(new java.awt.Color(153, 153, 153));
         threejLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        threejLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        threejLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         threejLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 threejLabelMouseClicked(evt);
@@ -121,7 +127,7 @@ public class PlayJPanel extends javax.swing.JPanel {
 
         fourjLabel.setBackground(new java.awt.Color(153, 153, 153));
         fourjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        fourjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        fourjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         fourjLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fourjLabelMouseClicked(evt);
@@ -130,7 +136,7 @@ public class PlayJPanel extends javax.swing.JPanel {
 
         eightjLabel.setBackground(new java.awt.Color(153, 153, 153));
         eightjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        eightjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        eightjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         eightjLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 eightjLabelMouseClicked(evt);
@@ -139,7 +145,7 @@ public class PlayJPanel extends javax.swing.JPanel {
 
         sixjLabel.setBackground(new java.awt.Color(153, 153, 153));
         sixjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sixjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        sixjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         sixjLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sixjLabelMouseClicked(evt);
@@ -148,7 +154,7 @@ public class PlayJPanel extends javax.swing.JPanel {
 
         sevenjLabel.setBackground(new java.awt.Color(153, 153, 153));
         sevenjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sevenjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        sevenjLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         sevenjLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 sevenjLabelMouseClicked(evt);
@@ -184,7 +190,7 @@ public class PlayJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addComponent(gamejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {eightjLabel, fivejLabel, fourjLabel, onejLabel, sevenjLabel, sixjLabel, threejLabel, twojLabel, zerojLabel});
@@ -210,7 +216,7 @@ public class PlayJPanel extends javax.swing.JPanel {
                         .addComponent(sixjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(sevenjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(eightjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {eightjLabel, fivejLabel, fourjLabel, onejLabel, sevenjLabel, sixjLabel, threejLabel, twojLabel, zerojLabel});
@@ -223,7 +229,7 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
-        
+        play(0);       
     }//GEN-LAST:event_zerojLabelMouseClicked
 
     private void onejLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onejLabelMouseClicked
@@ -232,6 +238,7 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
+        play(1);
     }//GEN-LAST:event_onejLabelMouseClicked
 
     private void twojLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twojLabelMouseClicked
@@ -240,6 +247,7 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
+        play(2);
     }//GEN-LAST:event_twojLabelMouseClicked
 
     private void threejLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_threejLabelMouseClicked
@@ -248,6 +256,7 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
+        play(3);
     }//GEN-LAST:event_threejLabelMouseClicked
 
     private void fourjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fourjLabelMouseClicked
@@ -256,6 +265,7 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
+        play(4);
     }//GEN-LAST:event_fourjLabelMouseClicked
 
     private void fivejLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fivejLabelMouseClicked
@@ -264,6 +274,7 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
+        play(5);
     }//GEN-LAST:event_fivejLabelMouseClicked
 
     private void sixjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sixjLabelMouseClicked
@@ -272,6 +283,7 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
+        play(6);
     }//GEN-LAST:event_sixjLabelMouseClicked
 
     private void sevenjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sevenjLabelMouseClicked
@@ -280,6 +292,7 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
+        play(7);
     }//GEN-LAST:event_sevenjLabelMouseClicked
 
     private void eightjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eightjLabelMouseClicked
@@ -288,6 +301,7 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
+        play(8);
     }//GEN-LAST:event_eightjLabelMouseClicked
 
     private boolean ifStatePossible(int[] states, int index) {
@@ -315,4 +329,42 @@ public class PlayJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel twojLabel;
     private javax.swing.JLabel zerojLabel;
     // End of variables declaration//GEN-END:variables
+
+    private void play(int i) {
+        String userImagePath = "images/cross.png";
+        String systemImagePath = "images/zero.png";
+        if (whoStarts == 1) {
+            userImagePath = "images/zero.png";
+            systemImagePath = "images/cross.png";
+        }
+        if (i == 0) {
+            zerojLabel.setIcon(new ImageIcon(userImagePath));
+        }
+        if (i == 1) {
+            onejLabel.setIcon(new ImageIcon(userImagePath));
+        }
+        if (i == 2) {
+            twojLabel.setIcon(new ImageIcon(userImagePath));
+        }
+        if (i == 3) {
+            threejLabel.setIcon(new ImageIcon(userImagePath));
+        }
+        if (i == 4) {
+            fourjLabel.setIcon(new ImageIcon(userImagePath));
+        }
+        if (i == 5) {
+            fivejLabel.setIcon(new ImageIcon(userImagePath));
+        }
+        if (i == 6) {
+            sixjLabel.setIcon(new ImageIcon(userImagePath));
+        }
+        if (i == 7) {
+            sevenjLabel.setIcon(new ImageIcon(userImagePath));
+        }
+        if (i == 8) {
+            eightjLabel.setIcon(new ImageIcon(userImagePath));
+        }
+        states[i] = 2;
+        // make move by system
+    }
 }
