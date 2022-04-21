@@ -8,6 +8,7 @@ import businesslogic.model.Bead;
 import businesslogic.model.Beads;
 import businesslogic.model.MatchBox;
 import businesslogic.model.MenaceGame;
+import businesslogic.util.CSVutil;
 import businesslogic.util.StateInitializer;
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +118,8 @@ public class MenaceSelfTrain {
            gameStartedBySystem=!gameStartedBySystem;
            gameStatus= -1;
         }
-
+        
+        CSVutil.writeTrainedStatesDataToCSV(menaceGame);
     }
     
     public int sumOfState(int[] state) {
@@ -159,7 +161,16 @@ public class MenaceSelfTrain {
         
         int[] lastState = currentState.get(currentState.size()-1).getState().clone();
         //TODO get Menacebeads by for loop
-        Beads beadsState = menaceGame.getMenaceTrainedState().getMatchBoxes().get(currentState.get(currentState.size()-1));
+        MatchBox matchbox = null;
+        for(MatchBox matchBox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
+            if(matchBox.equals(currentState.get(currentState.size()-1))){
+                matchbox = matchBox;
+                break;
+            }
+        }
+        //Replacing the one within HASH for easier access later
+        currentState.add(currentState.size()-1, matchbox);
+        Beads beadsState = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchbox);
         logger.info("Printing Beads probabilities");
         printBeadsProbablilityAndMakeMove(beadsState,menaceChosen);
         if(gameStartedBySystem){
