@@ -41,7 +41,7 @@ public class MenaceSelfTrain {
         this.iterations = iterations;
     }
     
-    public void selfPlay() {
+    public boolean selfPlay() {
         
         for(int i=0; i< iterations; i++) {
            
@@ -120,6 +120,8 @@ public class MenaceSelfTrain {
         }
         
         CSVutil.writeTrainedStatesDataToCSV(menaceGame);
+        
+        return true;
     }
     
     public int sumOfState(int[] state) {
@@ -165,11 +167,13 @@ public class MenaceSelfTrain {
         for(MatchBox matchBox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
             if(matchBox.equals(currentState.get(currentState.size()-1))){
                 matchbox = matchBox;
+                logger.info("Found MatchBox");
                 break;
             }
         }
         //Replacing the one within HASH for easier access later
-        currentState.add(currentState.size()-1, matchbox);
+        currentState.remove(currentState.size()-1);
+        currentState.add(matchbox);
         Beads beadsState = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchbox);
         logger.info("Printing Beads probabilities");
         printBeadsProbablilityAndMakeMove(beadsState,menaceChosen);
@@ -186,14 +190,12 @@ public class MenaceSelfTrain {
     public void printBeadsProbablilityAndMakeMove(Beads beadsState, List<Integer> menaceChosen) {
         
         int sum = 0;
-        for(Bead bead:beadsState.getPositions()){
-            
-            sum+=bead.getCurrentCount();
-        }
+        sum = beadsState.getPositions().stream().map(bead -> bead.getCurrentCount()).reduce(sum, Integer::sum);
         
+        logger.info("Sum ::: "+ sum);
         for(Bead bead:beadsState.getPositions()){
             
-            logger.info("Probability of choosing "+ bead.getBoardPosition()+" is "+ (float)(bead.getCurrentCount()/sum));
+            logger.info("Probability of choosing "+ bead.getBoardPosition()+" is "+ (float)bead.getCurrentCount()/sum);
         }
         logger.info("System choosing a Random Move it can take");
 
