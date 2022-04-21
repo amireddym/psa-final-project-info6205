@@ -31,7 +31,6 @@ public class MainJFrame extends javax.swing.JFrame {
         logger.info("Trying to retrive Trained states from DBo4");
         menaceGame = CSVutil.getTrainedMenaceGameFromCSV();
         
-//        menaceGame = dB4OUtil.retrieveGameState();
         this.setSize(1680, 1050);
     }
 
