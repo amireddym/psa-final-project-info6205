@@ -10,10 +10,8 @@ import businesslogic.model.MatchBox;
 import businesslogic.model.MenaceGame;
 import businesslogic.util.StateInitializer;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -160,6 +158,7 @@ public class MenaceSelfTrain {
     public void makeMoveBySystem(List<MatchBox> currentState, List<Integer> menaceChosen) {
         
         int[] lastState = currentState.get(currentState.size()-1).getState().clone();
+        //TODO get Menacebeads by for loop
         Beads beadsState = menaceGame.getMenaceTrainedState().getMatchBoxes().get(currentState.get(currentState.size()-1));
         logger.info("Printing Beads probabilities");
         printBeadsProbablilityAndMakeMove(beadsState,menaceChosen);
