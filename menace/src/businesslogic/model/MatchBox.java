@@ -40,7 +40,14 @@ public class MatchBox {
     //TODO Need to update the function
     @Override
     public int hashCode() {
-        return super.hashCode(); 
+        
+        int power = 1;
+        int hash = 0;
+        for(int i=0;i<9;i++) {
+            hash = hash + power*state[i];
+            power*=7;
+        }
+        return hash; 
     }
 
     @Override

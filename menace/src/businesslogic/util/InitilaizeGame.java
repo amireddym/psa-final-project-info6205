@@ -37,6 +37,10 @@ public class InitilaizeGame {
         matchBoxStates = StateInitializer.getAllPossibleMatchBoxStates(matchBoxStates);
         logger.info("Found no of MatchBox states ::: " + matchBoxStates.size());
         
+        for(MatchBox matchBox: matchBoxStates) {
+            System.out.println(matchBox.hashCode());
+        }
+        
         logger.info("Adding all Bead states to the corresponding matchBox in a HashMap");
         Map<MatchBox,Beads> matchBoxes = StateInitializer.generateAllInitialMatchBoxStates(matchBoxStates);
         menaceTrainedState.setMatchBoxes(matchBoxes);
