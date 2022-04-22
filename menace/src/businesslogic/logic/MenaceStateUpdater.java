@@ -8,7 +8,11 @@ import businesslogic.model.Bead;
 import businesslogic.model.Beads;
 import businesslogic.model.MatchBox;
 import businesslogic.model.MenaceGame;
+import businesslogic.util.StatePrinter;
 import java.util.List;
+import javax.crypto.Mac;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -16,6 +20,7 @@ import java.util.List;
  */
 public class MenaceStateUpdater {
     
+    private static final Logger logger  = LoggerFactory.getLogger(MenaceStateUpdater.class);
     
     public static void updateMenaceBeadsToTrain(MenaceGame menaceGame, List<MatchBox> currentState, List<Integer> menaceChosen, 
             boolean gameStartedBySystem, int gameStatus) {

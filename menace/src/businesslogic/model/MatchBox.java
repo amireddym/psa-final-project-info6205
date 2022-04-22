@@ -54,7 +54,7 @@ public class MatchBox {
     public boolean equals(Object obj) {
         
         MatchBox matchBox = (MatchBox) obj;
-        return StateInitializer.bothstatesAreSame(state, matchBox.getState()).isMatched(); 
+        return StateInitializer.bothstatesAreSame(state.clone(), matchBox.getState().clone()).isMatched(); 
     }
     
     
