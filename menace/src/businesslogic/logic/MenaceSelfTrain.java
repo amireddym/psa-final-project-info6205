@@ -10,6 +10,7 @@ import businesslogic.model.MatchBox;
 import businesslogic.model.MenaceGame;
 import businesslogic.util.CSVutil;
 import businesslogic.util.StateInitializer;
+import businesslogic.util.StatePrinter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -170,6 +171,9 @@ public class MenaceSelfTrain {
                 logger.info("Found MatchBox");
                 break;
             }
+        }
+        if(matchbox == null) {
+            StatePrinter.printState(lastState);
         }
         //Replacing the one within HASH for easier access later
         currentState.remove(currentState.size()-1);
