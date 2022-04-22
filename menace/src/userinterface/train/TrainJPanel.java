@@ -99,20 +99,19 @@ public class TrainJPanel extends javax.swing.JPanel {
     private void trainjbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainjbuttonActionPerformed
         // TODO add your handling code here:
         String iterationCount= iterationsCountField.getText();
-
+        int iterations = 0;
+        
         try{
-            int iterations= Integer.parseInt(iterationCount);
-            //TODO: need to call function for training
-            MenaceSelfTrain menaceSelfTrain=new MenaceSelfTrain(menaceGame,iterations);
-            menaceSelfTrain.selfPlay();
-            
+            iterations= Integer.parseInt(iterationCount);            
         }
         catch(Exception e){
             logger.info("Conversion from string to integer failed from user input");
-            JOptionPane.showMessageDialog(this, "Please Enter a Valid Number"); 
+            JOptionPane.showMessageDialog(this, "Please Enter a Valid Number");
+            return;
         } 
         
-        
+        MenaceSelfTrain menaceSelfTrain=new MenaceSelfTrain(menaceGame,iterations);
+        menaceSelfTrain.selfPlay();
         
     }//GEN-LAST:event_trainjbuttonActionPerformed
 

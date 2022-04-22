@@ -34,12 +34,15 @@ public class InitilaizeGame {
         matchBoxStates.add(new MatchBox(new int[]{0,0,0,0,1,0,0,0,0}));
         
         logger.info("Getting all possible states of the matchBoxes");
-        matchBoxStates = StateInitializer.getAllPossibleMatchBoxStates(matchBoxStates);
+        matchBoxStates = StateInitializer.getAllPossibleMatchBoxStates2(matchBoxStates);
         logger.info("Found no of MatchBox states ::: " + matchBoxStates.size());
         
-        for(MatchBox matchBox: matchBoxStates) {
-            System.out.println(matchBox.hashCode());
-        }
+//        for(MatchBox matchBox: matchBoxStates) {
+//            System.out.println(matchBox.hashCode());
+//        }
+        // Removing won states
+        matchBoxStates = StateInitializer.removeNotNeededStates(matchBoxStates);
+        logger.info("Final no of MatchBox states ::: " + matchBoxStates.size());
         
         logger.info("Adding all Bead states to the corresponding matchBox in a HashMap");
         Map<MatchBox,Beads> matchBoxes = StateInitializer.generateAllInitialMatchBoxStates(matchBoxStates);

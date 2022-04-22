@@ -37,26 +37,26 @@ public class MatchBox {
         return StatePrinter.getCurrentStateInString(getState());
     }
     
-    //TODO Need to update the function
-    @Override
-    public int hashCode() {
-        
-        int power = 1;
-        int hash = 0;
-        for(int i=0;i<9;i++) {
-            hash = hash + power*state[i];
-            power*=7;
-        }
-        return hash; 
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        
-        MatchBox matchBox = (MatchBox) obj;
-        return StateInitializer.bothstatesAreSame(state, matchBox.getState()).isMatched(); 
-    }
-    
+//    //TODO Need to update the function
+//    @Override
+//    public int hashCode() {
+//        
+//        int power = 1;
+//        int hash = 0;
+//        for(int i=0;i<9;i++) {
+//            hash = hash + power*state[i];
+//            power*=7;
+//        }
+//        return hash; 
+//    }
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        
+//        MatchBox matchBox = (MatchBox) obj;
+//        return StateInitializer.bothstatesAreSame(state.clone(), matchBox.getState().clone()).isMatched(); 
+//    }
+//    
     
     
 }

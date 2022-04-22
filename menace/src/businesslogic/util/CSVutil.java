@@ -136,8 +136,10 @@ public class CSVutil {
         List<Bead> beadList = new ArrayList<>();
         for(int i=0;i<9;i++) {
             
-            Bead bead = new Bead(i,Integer.valueOf(csvState[i+9]));
-            beadList.add(bead);
+            if(Integer.valueOf(csvState[i+9]).intValue()!=0) { 
+                Bead bead = new Bead(i,Integer.valueOf(csvState[i+9]));
+                beadList.add(bead);
+            }
         }
         beads.setPositions(beadList);
         return beads;

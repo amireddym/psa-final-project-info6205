@@ -10,6 +10,7 @@ import businesslogic.model.MatchBox;
 import businesslogic.model.MenaceGame;
 import businesslogic.util.CSVutil;
 import businesslogic.util.StateInitializer;
+import businesslogic.util.StatePrinter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -163,13 +164,21 @@ public class MenaceSelfTrain {
         //TODO get Menacebeads by for loop
         MatchBox matchbox = null;
         for(MatchBox matchBox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
-            if(matchBox.equals(currentState.get(currentState.size()-1))){
+            if(StateInitializer.bothstatesAreSame(matchBox.getState().clone(),currentState.get(currentState.size()-1).getState().clone()).isMatched()){
                 matchbox = matchBox;
                 break;
             }
         }
+        
+        if(matchbox == null) {
+            logger.info("**************NOT FOUND A MATCH BOX IN HASH************");
+            StatePrinter.printState(lastState);
+            System.out.println(StatePrinter.getStateInCSVformat(lastState));
+        }
+        
         //Replacing the one within HASH for easier access later
-        currentState.add(currentState.size()-1, matchbox);
+        currentState.remove(currentState.size()-1);
+        currentState.add(matchbox);
         Beads beadsState = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchbox);
         logger.info("Printing Beads probabilities");
         printBeadsProbablilityAndMakeMove(beadsState,menaceChosen);
@@ -193,7 +202,7 @@ public class MenaceSelfTrain {
         
         for(Bead bead:beadsState.getPositions()){
             
-            logger.info("Probability of choosing "+ bead.getBoardPosition()+" is "+ (float)(bead.getCurrentCount()/sum));
+            logger.info("Probability of choosing "+ bead.getBoardPosition()+" is "+ (float)bead.getCurrentCount()/sum);
         }
         logger.info("System choosing a Random Move it can take");
 
