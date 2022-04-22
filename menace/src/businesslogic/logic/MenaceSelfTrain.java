@@ -42,7 +42,7 @@ public class MenaceSelfTrain {
         this.iterations = iterations;
     }
     
-    public void selfPlay() {
+    public boolean selfPlay() {
         
         for(int i=0; i< iterations; i++) {
            
@@ -121,6 +121,8 @@ public class MenaceSelfTrain {
         }
         
         CSVutil.writeTrainedStatesDataToCSV(menaceGame);
+        
+        return true;
     }
     
     public int sumOfState(int[] state) {
@@ -166,10 +168,10 @@ public class MenaceSelfTrain {
         for(MatchBox matchBox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
             if(StateInitializer.bothstatesAreSame(matchBox.getState().clone(),currentState.get(currentState.size()-1).getState().clone()).isMatched()){
                 matchbox = matchBox;
+                logger.info("Found MatchBox");
                 break;
             }
-        }
-        
+        }        
         if(matchbox == null) {
             logger.info("**************NOT FOUND A MATCH BOX IN HASH************");
             StatePrinter.printState(lastState);
@@ -195,11 +197,9 @@ public class MenaceSelfTrain {
     public void printBeadsProbablilityAndMakeMove(Beads beadsState, List<Integer> menaceChosen) {
         
         int sum = 0;
-        for(Bead bead:beadsState.getPositions()){
-            
-            sum+=bead.getCurrentCount();
-        }
+        sum = beadsState.getPositions().stream().map(bead -> bead.getCurrentCount()).reduce(sum, Integer::sum);
         
+        logger.info("Sum ::: "+ sum);
         for(Bead bead:beadsState.getPositions()){
             
             logger.info("Probability of choosing "+ bead.getBoardPosition()+" is "+ (float)bead.getCurrentCount()/sum);

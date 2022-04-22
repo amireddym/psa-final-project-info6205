@@ -10,7 +10,6 @@ import businesslogic.logic.MenaceSelfTrain;
 import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import userinterface.MainJFrame;
 
 /**
  *
@@ -43,7 +42,7 @@ public class TrainJPanel extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
         trainjbutton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        iterationsjLabel = new javax.swing.JLabel();
         iterationsCountField = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
@@ -55,7 +54,7 @@ public class TrainJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Number of Iterations:");
+        iterationsjLabel.setText("Number of Iterations:");
 
         iterationsCountField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,7 +70,7 @@ public class TrainJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(111, 111, 111)
-                        .addComponent(jLabel1)
+                        .addComponent(iterationsjLabel)
                         .addGap(81, 81, 81)
                         .addComponent(iterationsCountField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -85,7 +84,7 @@ public class TrainJPanel extends javax.swing.JPanel {
                 .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(iterationsCountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(iterationsjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(125, 125, 125)
                 .addComponent(trainjbutton)
                 .addContainerGap(140, Short.MAX_VALUE))
@@ -112,14 +111,14 @@ public class TrainJPanel extends javax.swing.JPanel {
         
         MenaceSelfTrain menaceSelfTrain=new MenaceSelfTrain(menaceGame,iterations);
         menaceSelfTrain.selfPlay();
-        
+       
     }//GEN-LAST:event_trainjbuttonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField iterationsCountField;
+    private javax.swing.JLabel iterationsjLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton trainjbutton;
     // End of variables declaration//GEN-END:variables
 
