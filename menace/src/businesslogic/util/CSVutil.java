@@ -41,7 +41,7 @@ public class CSVutil {
         Set<MatchBox> matchBoxSet = stateMaps.keySet();
         
         try {
-            FileWriter fw = new FileWriter(MenaceConstants.MENACE_TRAINED_CONSTANTS_FILE_NAME, true);
+            FileWriter fw = new FileWriter(MenaceConstants.MENACE_TRAINED_CONSTANTS_FILE_NAME, false);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw);
 

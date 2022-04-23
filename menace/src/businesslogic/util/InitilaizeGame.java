@@ -4,6 +4,7 @@
  */
 package businesslogic.util;
 
+import businesslogic.model.Bead;
 import businesslogic.model.Beads;
 import businesslogic.model.MatchBox;
 import businesslogic.model.MenaceGame;
@@ -46,11 +47,26 @@ public class InitilaizeGame {
         
         logger.info("Adding all Bead states to the corresponding matchBox in a HashMap");
         Map<MatchBox,Beads> matchBoxes = StateInitializer.generateAllInitialMatchBoxStates(matchBoxStates);
+        
+        addInitalState(matchBoxes);
+        
         menaceTrainedState.setMatchBoxes(matchBoxes);
         MenaceGame menaceGame = new MenaceGame(menaceTrainedState);
         
         logger.info("Done creating all the MatchBox states and possible Beads");
         return menaceGame;
+    }
+
+    private static void addInitalState(Map<MatchBox, Beads> matchBoxes) {
+        
+        Beads beadState = new Beads();
+        List<Bead> beads = new ArrayList<>();
+        beads.add(new Bead(0));
+        beads.add(new Bead(1));
+        beads.add(new Bead(4));
+        beadState.setPositions(beads);
+        
+        matchBoxes.put(new MatchBox(new int[9]), beadState);
     }
     
 }

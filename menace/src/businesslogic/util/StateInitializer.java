@@ -84,9 +84,6 @@ public class StateInitializer {
         matchBoxs.addAll(eightMoveStates);
         matchBoxs.addAll(ninthMoveStates);
         
-        logger.info("Added 0 state i.e the starting state");
-        matchBoxs.add(new MatchBox(new int[9]));
-        
         return matchBoxs;
     }
     

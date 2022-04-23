@@ -110,7 +110,7 @@ public class TrainJPanel extends javax.swing.JPanel {
         } 
         
         MenaceSelfTrain menaceSelfTrain=new MenaceSelfTrain(menaceGame,iterations);
-        menaceSelfTrain.selfPlay();
+        boolean status = menaceSelfTrain.selfPlay();
        
     }//GEN-LAST:event_trainjbuttonActionPerformed
 
