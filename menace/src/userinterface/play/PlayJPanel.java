@@ -5,6 +5,7 @@
 package userinterface.play;
 
 import businesslogic.logic.MenaceHumanPlay;
+import businesslogic.logic.MenaceStateUpdater;
 import businesslogic.model.MatchBox;
 import businesslogic.model.MenaceGame;
 import businesslogic.util.StateInitializer;
@@ -634,8 +635,10 @@ public class PlayJPanel extends javax.swing.JPanel {
 
     private void reset() {
         
+        //Train the SYSTEM
+        menaceHumanPlay.updateMenaceBeadsToTrain(menaceGame,whoStarts, true);
         states = new int[9];
-        
+        menaceHumanPlay = new MenaceHumanPlay(menaceGame);
         
     }
     

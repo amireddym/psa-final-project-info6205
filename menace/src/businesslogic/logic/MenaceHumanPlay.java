@@ -155,5 +155,25 @@ public class MenaceHumanPlay {
             
         return index;
     }
+
+    public void updateMenaceBeadsToTrain(MenaceGame menaceGame, int whoStarted, boolean systemWon) {
+     
+        if(whoStarted==0){
+            // Started by USER
+            if(systemWon){
+                MenaceStateUpdater.updateMenaceBeadsToTrain(menaceGame, currentState, menaceChosen, false, 2);
+            }else{
+                MenaceStateUpdater.updateMenaceBeadsToTrain(menaceGame, currentState, menaceChosen, false, 1);
+            }
+        }else{
+            //Started by SYSTEM
+            if(systemWon){
+                MenaceStateUpdater.updateMenaceBeadsToTrain(menaceGame, currentState, menaceChosen, true, 1);
+            }else{
+                MenaceStateUpdater.updateMenaceBeadsToTrain(menaceGame, currentState, menaceChosen, true, 2);
+            }
+        }
+        
+    }
     
 }
