@@ -638,7 +638,22 @@ public class PlayJPanel extends javax.swing.JPanel {
         //Train the SYSTEM
         menaceHumanPlay.updateMenaceBeadsToTrain(menaceGame,whoStarts, true);
         states = new int[9];
+        resetImages();
         menaceHumanPlay = new MenaceHumanPlay(menaceGame);
+        
+    }
+    
+    private void resetImages() {
+        
+        zerojLabel.setIcon(null);
+        onejLabel.setIcon(null);
+        twojLabel.setIcon(null);
+        threejLabel.setIcon(null);
+        fourjLabel.setIcon(null);
+        fivejLabel.setIcon(null);
+        sixjLabel.setIcon(null);
+        sevenjLabel.setIcon(null);
+        eightjLabel.setIcon(null);
         
     }
     
