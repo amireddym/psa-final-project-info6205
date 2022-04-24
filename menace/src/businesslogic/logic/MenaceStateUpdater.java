@@ -34,7 +34,7 @@ public class MenaceStateUpdater {
                     //TODO add to the beads state is Needed
                     int i=0;
                     int j=0;
-                    while(i<= menaceChosen.size()){
+                    while(i< menaceChosen.size()){
                         
                         //Find from the whole States and update it
                         MatchBox matchBox = null;
@@ -65,7 +65,7 @@ public class MenaceStateUpdater {
                     //TODO remove to the bead state is Needed
                     int i=0;
                     int j=0;
-                    while(i<= menaceChosen.size()){
+                    while(i< menaceChosen.size()){
                         
                         //Find from the whole States and update it
                         MatchBox matchBox = null;
@@ -98,7 +98,7 @@ public class MenaceStateUpdater {
                     //TODO remove to the bead state is Needed
                     int i=0;
                     int j=0;
-                    while(i<= menaceChosen.size()){
+                    while(i< menaceChosen.size()){
                         
                         //Find from the whole States and update it    
                         MatchBox matchBox = null;
@@ -129,7 +129,7 @@ public class MenaceStateUpdater {
                     //TODO add to the bead state is Needed
                     int i=0;
                     int j=0;
-                    while(i<= menaceChosen.size()){
+                    while(i< menaceChosen.size()){
                         
                         //Find from the whole States and update it
                         MatchBox matchBox = null;
