@@ -79,7 +79,7 @@ public class MenaceHumanPlay {
         int position = printBeadsProbablilityAndMakeMove(beadsState);
         
         int actualMove = findActualmove(position, matchingInfo.getRotations(), matchingInfo.getFlips());
-        menaceChosen.add(actualMove);
+//        menaceChosen.add(actualMove);
         
         return actualMove;
     }
