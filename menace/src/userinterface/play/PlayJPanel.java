@@ -7,6 +7,7 @@ package userinterface.play;
 import businesslogic.logic.MenaceHumanPlay;
 import businesslogic.model.MatchBox;
 import businesslogic.model.MenaceGame;
+import businesslogic.util.StateInitializer;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -24,7 +25,7 @@ public class PlayJPanel extends javax.swing.JPanel {
     
     private MenaceGame menaceGame;
     
-    private int whoStarts = 0;
+    private int whoStarts = -1;
     
     private int[] states = new int[9];
     
@@ -48,8 +49,10 @@ public class PlayJPanel extends javax.swing.JPanel {
         }else{
             logger.info("System is going to play first");
             // run system making move function here once
+            int index = menaceHumanPlay.makeMove(states, whoStarts);
+            states[index]= 1;
+            play(index, true);
         }
-        
         
     }
 
@@ -224,11 +227,49 @@ public class PlayJPanel extends javax.swing.JPanel {
 
     private void zerojLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zerojLabelMouseClicked
         // TODO add your handling code here:
+        
         if(!ifStatePossible(states,0)){
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
-        play(0);       
+        
+        play(0,false);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You WON");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
+        //Make a move by SYSTEM
+        int index = menaceHumanPlay.makeMove(states, whoStarts);
+        if(whoStarts==0){
+            states[index]=2;
+        }else{
+            states[index]=1;
+        }
+        
+        //Put system image in ui
+        play(index, true);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You LOST");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }        
+        
     }//GEN-LAST:event_zerojLabelMouseClicked
 
     private void onejLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onejLabelMouseClicked
@@ -237,7 +278,43 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
-        play(1);
+        play(1,false);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You WON");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
+        //Make a move by SYSTEM
+        int index = menaceHumanPlay.makeMove(states, whoStarts);
+        if(whoStarts==0){
+            states[index]=2;
+        }else{
+            states[index]=1;
+        }
+        
+        //Put system image in ui
+        play(index, true);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You LOST");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
     }//GEN-LAST:event_onejLabelMouseClicked
 
     private void twojLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_twojLabelMouseClicked
@@ -246,7 +323,43 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
-        play(2);
+        play(2,false);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You WON");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
+        //Make a move by SYSTEM
+        int index = menaceHumanPlay.makeMove(states, whoStarts);
+        if(whoStarts==0){
+            states[index]=2;
+        }else{
+            states[index]=1;
+        }
+        
+        //Put system image in ui
+        play(index, true);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You LOST");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
     }//GEN-LAST:event_twojLabelMouseClicked
 
     private void threejLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_threejLabelMouseClicked
@@ -255,7 +368,43 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
-        play(3);
+        play(3,false);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You WON");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
+        //Make a move by SYSTEM
+        int index = menaceHumanPlay.makeMove(states, whoStarts);
+        if(whoStarts==0){
+            states[index]=2;
+        }else{
+            states[index]=1;
+        }
+        
+        //Put system image in ui
+        play(index, true);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You LOST");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
     }//GEN-LAST:event_threejLabelMouseClicked
 
     private void fourjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fourjLabelMouseClicked
@@ -264,7 +413,43 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
-        play(4);
+        play(4,false);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You WON");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
+        //Make a move by SYSTEM
+        int index = menaceHumanPlay.makeMove(states, whoStarts);
+        if(whoStarts==0){
+            states[index]=2;
+        }else{
+            states[index]=1;
+        }
+        
+        //Put system image in ui
+        play(index, true);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You LOST");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
     }//GEN-LAST:event_fourjLabelMouseClicked
 
     private void fivejLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fivejLabelMouseClicked
@@ -273,7 +458,43 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
-        play(5);
+        play(5,false);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You WON");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
+        //Make a move by SYSTEM
+        int index = menaceHumanPlay.makeMove(states, whoStarts);
+        if(whoStarts==0){
+            states[index]=2;
+        }else{
+            states[index]=1;
+        }
+        
+        //Put system image in ui
+        play(index, true);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You LOST");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
     }//GEN-LAST:event_fivejLabelMouseClicked
 
     private void sixjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sixjLabelMouseClicked
@@ -282,7 +503,43 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
-        play(6);
+        play(6,false);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You WON");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
+        //Make a move by SYSTEM
+        int index = menaceHumanPlay.makeMove(states, whoStarts);
+        if(whoStarts==0){
+            states[index]=2;
+        }else{
+            states[index]=1;
+        }
+        
+        //Put system image in ui
+        play(index, true);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You LOST");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
     }//GEN-LAST:event_sixjLabelMouseClicked
 
     private void sevenjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sevenjLabelMouseClicked
@@ -291,7 +548,43 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
-        play(7);
+        play(7,false);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You WON");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
+        //Make a move by SYSTEM
+        int index = menaceHumanPlay.makeMove(states, whoStarts);
+        if(whoStarts==0){
+            states[index]=2;
+        }else{
+            states[index]=1;
+        }
+        
+        //Put system image in ui
+        play(index, true);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You LOST");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
     }//GEN-LAST:event_sevenjLabelMouseClicked
 
     private void eightjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eightjLabelMouseClicked
@@ -300,9 +593,73 @@ public class PlayJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Choose a valid position");
             return;
         }
-        play(8);
+        play(8,false);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You WON");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
+        //Make a move by SYSTEM
+        int index = menaceHumanPlay.makeMove(states, whoStarts);
+        if(whoStarts==0){
+            states[index]=2;
+        }else{
+            states[index]=1;
+        }
+        
+        //Put system image in ui
+        play(index, true);
+        if(isGameOver()){
+            JOptionPane.showMessageDialog(this, "You LOST");
+            reset();
+            return;
+        }
+        
+        if(!isNextMovePossible()){
+            
+            JOptionPane.showMessageDialog(this, "Its a DRAW");
+            reset();
+            return;
+        }
+        
     }//GEN-LAST:event_eightjLabelMouseClicked
 
+    private void reset() {
+        
+        states = new int[9];
+        
+        
+    }
+    
+    private boolean isNextMovePossible() {
+        
+        int sum = 0;
+        for(int i=0;i<9;i++) {
+            sum+=states[i];
+        }
+        if(sum==13){
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean isGameOver() {
+        
+        int gameWon = StateInitializer.gameWonByWhom(states);
+        if(gameWon==0) {
+            return false;
+        }
+        return true;
+    }
+    
     private boolean ifStatePossible(int[] states, int index) {
         
         return states[index]==0;
@@ -329,13 +686,47 @@ public class PlayJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel zerojLabel;
     // End of variables declaration//GEN-END:variables
 
-    private void play(int i) {
+    private void play(int i, boolean system) {
         String userImagePath = "images/cross.png";
         String systemImagePath = "images/zero.png";
         if (whoStarts == 1) {
             userImagePath = "images/zero.png";
             systemImagePath = "images/cross.png";
         }
+        
+        if(system){
+            
+            if (i == 0) {
+                zerojLabel.setIcon(new ImageIcon(systemImagePath));
+            }
+            if (i == 1) {
+                onejLabel.setIcon(new ImageIcon(systemImagePath));
+            }
+            if (i == 2) {
+                twojLabel.setIcon(new ImageIcon(systemImagePath));
+            }
+            if (i == 3) {
+                threejLabel.setIcon(new ImageIcon(systemImagePath));
+            }
+            if (i == 4) {
+                fourjLabel.setIcon(new ImageIcon(systemImagePath));
+            }
+            if (i == 5) {
+                fivejLabel.setIcon(new ImageIcon(systemImagePath));
+            }
+            if (i == 6) {
+                sixjLabel.setIcon(new ImageIcon(systemImagePath));
+            }
+            if (i == 7) {
+                sevenjLabel.setIcon(new ImageIcon(systemImagePath));
+            }
+            if (i == 8) {
+                eightjLabel.setIcon(new ImageIcon(systemImagePath));
+            }
+            
+            return;
+        }
+        
         if (i == 0) {
             zerojLabel.setIcon(new ImageIcon(userImagePath));
         }
@@ -363,7 +754,12 @@ public class PlayJPanel extends javax.swing.JPanel {
         if (i == 8) {
             eightjLabel.setIcon(new ImageIcon(userImagePath));
         }
-        states[i] = 2;
-        // make move by system
+        
+        if(whoStarts == 0) {
+            states[i] = 1;
+        }else{
+            states[i] = 2;
+        }
+        
     }
 }

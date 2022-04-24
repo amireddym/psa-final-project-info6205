@@ -87,7 +87,7 @@ public class StateInitializer {
         return matchBoxs;
     }
     
-        public static List<MatchBox> getAllPossibleMatchBoxStates2(List<MatchBox> matchBoxs) {
+    public static List<MatchBox> getAllPossibleMatchBoxStates2(List<MatchBox> matchBoxs) {
         
         logger.info("*****Generating 2nd possible state moves from 1st move");
         List<MatchBox> secondMoveStates = generateNextMatchboxStates2(matchBoxs,2);
