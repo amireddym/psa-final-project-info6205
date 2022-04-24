@@ -32,7 +32,7 @@ public class MainJFrame extends javax.swing.JFrame {
         logger.info("Trying to retrive Trained states from DBo4");
         menaceGame = CSVutil.getTrainedMenaceGameFromCSV();
         
-        this.setSize(1680, 1050);
+        this.setSize(1000,800);
     }
 
     /**
@@ -51,12 +51,19 @@ public class MainJFrame extends javax.swing.JFrame {
         rightjPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
 
+        mainjSplitPane.setDividerSize(6);
+
+        leftjPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        trainjButton.setBackground(new java.awt.Color(0, 0, 0));
+        trainjButton.setForeground(new java.awt.Color(255, 255, 255));
         trainjButton.setText("Train");
         trainjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +71,8 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        playjButton.setBackground(new java.awt.Color(0, 0, 0));
+        playjButton.setForeground(new java.awt.Color(255, 255, 255));
         playjButton.setText("Play");
         playjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,11 +111,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
         mainjSplitPane.setLeftComponent(leftjPanel);
 
+        rightjPanel.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout rightjPanelLayout = new javax.swing.GroupLayout(rightjPanel);
         rightjPanel.setLayout(rightjPanelLayout);
         rightjPanelLayout.setHorizontalGroup(
             rightjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 682, Short.MAX_VALUE)
+            .addGap(0, 681, Short.MAX_VALUE)
         );
         rightjPanelLayout.setVerticalGroup(
             rightjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
