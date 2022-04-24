@@ -7,6 +7,7 @@ package userinterface;
 import businesslogic.model.MenaceGame;
 import businesslogic.util.CSVutil;
 import businesslogic.util.DB4OUtil;
+import javax.swing.JButton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import userinterface.play.PlayJPanel;
@@ -130,7 +131,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void trainjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainjButtonActionPerformed
         // TODO add your handling code here:
-        TrainJPanel trainJPanel= new TrainJPanel(menaceGame);
+        TrainJPanel trainJPanel= new TrainJPanel(menaceGame, this);
         mainjSplitPane.setRightComponent(trainJPanel);
     }//GEN-LAST:event_trainjButtonActionPerformed
 
@@ -181,6 +182,14 @@ public class MainJFrame extends javax.swing.JFrame {
         });
     }
 
+    public JButton getPlayjButton() {
+        return playjButton;
+    }
+
+    public JButton getTrainjButton() {
+        return trainjButton;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel leftjPanel;
     private javax.swing.JSplitPane mainjSplitPane;

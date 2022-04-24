@@ -7,9 +7,11 @@ package userinterface.train;
 
 import businesslogic.model.MenaceGame;
 import businesslogic.logic.MenaceSelfTrain;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import userinterface.MainJFrame;
 
 /**
  *
@@ -18,15 +20,17 @@ import org.slf4j.LoggerFactory;
 public class TrainJPanel extends javax.swing.JPanel {
     
     private MenaceGame menaceGame;
-     private static final Logger logger = LoggerFactory.getLogger(TrainJPanel.class);
+    private MainJFrame mainJframe;
+    private static final Logger logger = LoggerFactory.getLogger(TrainJPanel.class);
     
     /** Creates new form TrainJPanel */
     public TrainJPanel() {
         initComponents();
     }
 
-    public TrainJPanel(MenaceGame menaceGame) {
+    public TrainJPanel(MenaceGame menaceGame, MainJFrame mainJframe) {
         this.menaceGame=menaceGame;
+        this.mainJframe=mainJframe;
         initComponents();
         
     }
@@ -109,9 +113,11 @@ public class TrainJPanel extends javax.swing.JPanel {
             return;
         } 
         
+        mainJframe.getPlayjButton().setEnabled(false);
         MenaceSelfTrain menaceSelfTrain=new MenaceSelfTrain(menaceGame,iterations);
         boolean status = menaceSelfTrain.selfPlay();
-       
+        mainJframe.getPlayjButton().setEnabled(true);
+        
     }//GEN-LAST:event_trainjbuttonActionPerformed
 
 

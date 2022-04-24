@@ -10,9 +10,7 @@ import businesslogic.model.MatchBox;
 import businesslogic.model.MatchingInfo;
 import businesslogic.model.MenaceGame;
 import businesslogic.util.StateInitializer;
-import businesslogic.util.StatePrinter;
 import java.util.List;
-import javax.crypto.Mac;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
