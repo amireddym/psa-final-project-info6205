@@ -139,8 +139,8 @@ public class StateInitializer {
         matchBoxs.addAll(eightMoveStates);
         matchBoxs.addAll(ninthMoveStates);
         
-        logger.info("Added 0 state i.e the starting state");
-        matchBoxs.add(new MatchBox(new int[9]));
+//        logger.info("Added 0 state i.e the starting state");
+//        matchBoxs.add(new MatchBox(new int[9]));
         
         return matchBoxs;
     }
@@ -305,6 +305,7 @@ public class StateInitializer {
 //        logger.info("Checking the Flipped state for finding if its a Duplicate");
         //Flip state
         rotatedState = flipState(state2);
+        matchingInfo.setRotations(0);
         StatePrinter.getCurrentStateInString(rotatedState);
         matchingInfo.incrementFlips();
         matchingInfo.setMatched(true);
@@ -341,7 +342,7 @@ public class StateInitializer {
         rotatedState = rotateState90(rotatedState);
         StatePrinter.getCurrentStateInString(rotatedState);
         matchingInfo.incrementRotation();
-          matchingInfo.setMatched(true);
+        matchingInfo.setMatched(true);
         for(int i=0; i< 9; i++) {
             if(state1[i]!=rotatedState[i]){
                 matchingInfo.setMatched(false);

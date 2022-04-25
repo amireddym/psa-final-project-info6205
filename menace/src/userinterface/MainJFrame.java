@@ -24,12 +24,12 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     
     private static final Logger logger = LoggerFactory.getLogger(MainJFrame.class);
-    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+//    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     private MenaceGame menaceGame;
     
     public MainJFrame() {
         initComponents();
-        logger.info("Trying to retrive Trained states from DBo4");
+        logger.info("Trying to retrive Trained states from CSV");
         menaceGame = CSVutil.getTrainedMenaceGameFromCSV();
         
         this.setSize(1000,800);
