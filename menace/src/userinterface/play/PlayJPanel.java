@@ -5,12 +5,9 @@
 package userinterface.play;
 
 import businesslogic.logic.MenaceHumanPlay;
-import businesslogic.logic.MenaceStateUpdater;
-import businesslogic.model.MatchBox;
 import businesslogic.model.MenaceGame;
+import businesslogic.util.MenaceConstants;
 import businesslogic.util.StateInitializer;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.slf4j.Logger;
@@ -35,6 +32,7 @@ public class PlayJPanel extends javax.swing.JPanel {
     public PlayJPanel(MenaceGame menaceGame) {
         
         this.menaceGame=menaceGame;
+        states = new int[9];
         menaceHumanPlay = new MenaceHumanPlay(menaceGame);
         whoStarts = JOptionPane.showConfirmDialog(this, this, "Do you want to StartFirst", 0);
         logger.info("User chosen :: "+ whoStarts);
@@ -641,6 +639,7 @@ public class PlayJPanel extends javax.swing.JPanel {
         resetImages();
         menaceHumanPlay = new MenaceHumanPlay(menaceGame);
         
+        
     }
     
     private void resetImages() {
@@ -682,14 +681,6 @@ public class PlayJPanel extends javax.swing.JPanel {
         
         return states[index]==0;
     }
-
-    private void disableOnClick() {
-        
-    }
-    
-    private void enableOnClick() {
-        
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel eightjLabel;
@@ -705,11 +696,11 @@ public class PlayJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void play(int i, boolean system) {
-        String userImagePath = "images/cross.png";
-        String systemImagePath = "images/zero.png";
+        String userImagePath = MenaceConstants.CROSS_IMAGE;
+        String systemImagePath = MenaceConstants.NOUGHT_IMAGE;
         if (whoStarts == 1) {
-            userImagePath = "images/zero.png";
-            systemImagePath = "images/cross.png";
+            userImagePath = MenaceConstants.NOUGHT_IMAGE;
+            systemImagePath = MenaceConstants.CROSS_IMAGE;
         }
         
         if(system){

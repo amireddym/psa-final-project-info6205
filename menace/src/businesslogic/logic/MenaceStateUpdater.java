@@ -9,6 +9,7 @@ import businesslogic.model.Beads;
 import businesslogic.model.MatchBox;
 import businesslogic.model.MatchingInfo;
 import businesslogic.model.MenaceGame;
+import businesslogic.util.MenaceConstants;
 import businesslogic.util.StateInitializer;
 import java.util.List;
 import org.slf4j.Logger;
@@ -53,7 +54,7 @@ public class MenaceStateUpdater {
                         Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox);
                         for(Bead bead:beads.getPositions()) {
                             if(bead.getBoardPosition()== move){
-                                bead.setCurrentCount(bead.getCurrentCount()+1);
+                                bead.setCurrentCount(bead.getCurrentCount()+MenaceConstants.BETA);
                                 break;
                             }
                         }
@@ -84,7 +85,7 @@ public class MenaceStateUpdater {
                         Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox);
                         for(Bead bead:beads.getPositions()) {
                             if(bead.getBoardPosition()== move){
-                                bead.setCurrentCount(bead.getCurrentCount()-1);
+                                bead.setCurrentCount(bead.getCurrentCount()-MenaceConstants.GAMMA);
                                 break;
                             }
                         }
@@ -117,7 +118,7 @@ public class MenaceStateUpdater {
                         Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox);
                         for(Bead bead:beads.getPositions()) {
                             if(bead.getBoardPosition()== move){
-                                bead.setCurrentCount(bead.getCurrentCount()-1);
+                                bead.setCurrentCount(bead.getCurrentCount()-MenaceConstants.GAMMA);
                                 break;
                             }
                         }
@@ -148,7 +149,7 @@ public class MenaceStateUpdater {
                         Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox); 
                         for(Bead bead:beads.getPositions()) {
                             if(bead.getBoardPosition()== move){
-                                bead.setCurrentCount(bead.getCurrentCount()+1);
+                                bead.setCurrentCount(bead.getCurrentCount()+MenaceConstants.ALPHA);
                                 break;
                             }
                         }
