@@ -73,7 +73,7 @@ public class CSVutil {
         File file = new File(MenaceConstants.MENACE_TRAINED_CONSTANTS_FILE_NAME);
         if(!file.exists()) {
             
-            logger.info("State file dosent exist at :: "+ file.getAbsolutePath());
+            logger.info("Trained State file dosent exist at :: "+ file.getAbsolutePath());
             try {
                 file.createNewFile();
                 menaceGame = InitilaizeGame.initialize();
