@@ -41,7 +41,7 @@ public class CSVutil {
         Set<MatchBox> matchBoxSet = stateMaps.keySet();
         
         try {
-            FileWriter fw = new FileWriter(MenaceConstants.MENACE_TRAINED_CONSTANTS_FILE_NAME, true);
+            FileWriter fw = new FileWriter(MenaceConstants.MENACE_TRAINED_CONSTANTS_FILE_NAME, false);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw);
 
@@ -136,8 +136,10 @@ public class CSVutil {
         List<Bead> beadList = new ArrayList<>();
         for(int i=0;i<9;i++) {
             
-            Bead bead = new Bead(i,Integer.valueOf(csvState[i+9]));
-            beadList.add(bead);
+            if(Integer.valueOf(csvState[i+9]).intValue()!=0) { 
+                Bead bead = new Bead(i,Integer.valueOf(csvState[i+9]));
+                beadList.add(bead);
+            }
         }
         beads.setPositions(beadList);
         return beads;

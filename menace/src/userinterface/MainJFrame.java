@@ -7,6 +7,7 @@ package userinterface;
 import businesslogic.model.MenaceGame;
 import businesslogic.util.CSVutil;
 import businesslogic.util.DB4OUtil;
+import javax.swing.JButton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import userinterface.play.PlayJPanel;
@@ -31,7 +32,7 @@ public class MainJFrame extends javax.swing.JFrame {
         logger.info("Trying to retrive Trained states from DBo4");
         menaceGame = CSVutil.getTrainedMenaceGameFromCSV();
         
-        this.setSize(1680, 1050);
+        this.setSize(1000,800);
     }
 
     /**
@@ -50,12 +51,19 @@ public class MainJFrame extends javax.swing.JFrame {
         rightjPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
 
+        mainjSplitPane.setDividerSize(6);
+
+        leftjPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        trainjButton.setBackground(new java.awt.Color(0, 0, 0));
+        trainjButton.setForeground(new java.awt.Color(255, 255, 255));
         trainjButton.setText("Train");
         trainjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +71,8 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        playjButton.setBackground(new java.awt.Color(0, 0, 0));
+        playjButton.setForeground(new java.awt.Color(255, 255, 255));
         playjButton.setText("Play");
         playjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,11 +111,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
         mainjSplitPane.setLeftComponent(leftjPanel);
 
+        rightjPanel.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout rightjPanelLayout = new javax.swing.GroupLayout(rightjPanel);
         rightjPanel.setLayout(rightjPanelLayout);
         rightjPanelLayout.setHorizontalGroup(
             rightjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 682, Short.MAX_VALUE)
+            .addGap(0, 681, Short.MAX_VALUE)
         );
         rightjPanelLayout.setVerticalGroup(
             rightjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +142,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void trainjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainjButtonActionPerformed
         // TODO add your handling code here:
-        TrainJPanel trainJPanel= new TrainJPanel(menaceGame);
+        TrainJPanel trainJPanel= new TrainJPanel(menaceGame, this);
         mainjSplitPane.setRightComponent(trainJPanel);
     }//GEN-LAST:event_trainjButtonActionPerformed
 
@@ -181,6 +193,14 @@ public class MainJFrame extends javax.swing.JFrame {
         });
     }
 
+    public JButton getPlayjButton() {
+        return playjButton;
+    }
+
+    public JButton getTrainjButton() {
+        return trainjButton;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel leftjPanel;
     private javax.swing.JSplitPane mainjSplitPane;
