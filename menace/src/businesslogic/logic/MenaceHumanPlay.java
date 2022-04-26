@@ -11,6 +11,7 @@ import businesslogic.model.MatchingInfo;
 import businesslogic.model.MenaceGame;
 import businesslogic.util.StateInitializer;
 import businesslogic.util.StatePrinter;
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -33,6 +34,8 @@ public class MenaceHumanPlay {
 
     public MenaceHumanPlay(MenaceGame menaceGameTrained) {
         this.menaceGameTrained = menaceGameTrained;
+        currentState = new ArrayList<>();
+        currentState.add(new MatchBox(new int[]{0,0,0,0,0,0,0,0,0}));
     }
 
     public int makeMove(int[] states, int whoStarted) {
@@ -161,16 +164,16 @@ public class MenaceHumanPlay {
         if(whoStarted==0){
             // Started by USER
             if(systemWon){
-                MenaceStateUpdater.updateMenaceBeadsToTrain(menaceGame, currentState, menaceChosen, false, 2);
+                MenaceStateUpdater.updateMenaceBeadsToTrainHuman(menaceGame, currentState, menaceChosen, false, 2);
             }else{
-                MenaceStateUpdater.updateMenaceBeadsToTrain(menaceGame, currentState, menaceChosen, false, 1);
+                MenaceStateUpdater.updateMenaceBeadsToTrainHuman(menaceGame, currentState, menaceChosen, false, 1);
             }
         }else{
             //Started by SYSTEM
             if(systemWon){
-                MenaceStateUpdater.updateMenaceBeadsToTrain(menaceGame, currentState, menaceChosen, true, 1);
+                MenaceStateUpdater.updateMenaceBeadsToTrainHuman(menaceGame, currentState, menaceChosen, true, 1);
             }else{
-                MenaceStateUpdater.updateMenaceBeadsToTrain(menaceGame, currentState, menaceChosen, true, 2);
+                MenaceStateUpdater.updateMenaceBeadsToTrainHuman(menaceGame, currentState, menaceChosen, true, 2);
             }
         }
         
