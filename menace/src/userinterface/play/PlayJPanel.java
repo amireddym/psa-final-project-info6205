@@ -25,6 +25,8 @@ public class PlayJPanel extends javax.swing.JPanel {
     
     private int whoStarts = -1;
     
+    private boolean systemWon;
+        
     private int[] states = new int[9];
     
     private MenaceHumanPlay menaceHumanPlay;
@@ -235,14 +237,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(0,false);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You WON");
-            reset();
+            systemWon = false;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -258,14 +261,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(index, true);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You LOST");
-            reset();
+            systemWon=true;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }        
         
@@ -280,14 +284,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(1,false);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You WON");
-            reset();
+            systemWon=false;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -303,14 +308,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(index, true);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You LOST");
-            reset();
+            systemWon=true;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -325,14 +331,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(2,false);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You WON");
-            reset();
+            systemWon=false;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -348,14 +355,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(index, true);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You LOST");
-            reset();
+            systemWon=true;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -370,14 +378,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(3,false);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You WON");
-            reset();
+            systemWon=false;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -393,14 +402,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(index, true);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You LOST");
-            reset();
+            systemWon=true;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -415,14 +425,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(4,false);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You WON");
-            reset();
+            systemWon=false;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -438,14 +449,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(index, true);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You LOST");
-            reset();
+            systemWon=true;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -460,14 +472,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(5,false);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You WON");
-            reset();
+            systemWon=false;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -483,14 +496,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(index, true);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You LOST");
-            reset();
+            systemWon=true;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -505,14 +519,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(6,false);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You WON");
-            reset();
+            systemWon=false;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -528,14 +543,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(index, true);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You LOST");
-            reset();
+            systemWon=true;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -550,14 +566,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(7,false);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You WON");
-            reset();
+            systemWon=false;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -573,14 +590,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(index, true);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You LOST");
-            reset();
+            systemWon=true;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -595,14 +613,15 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(8,false);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You WON");
-            reset();
+            systemWon=false;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
@@ -618,23 +637,31 @@ public class PlayJPanel extends javax.swing.JPanel {
         play(index, true);
         if(isGameOver()){
             JOptionPane.showMessageDialog(this, "You LOST");
-            reset();
+            systemWon=true;
+            reset(1);
             return;
         }
         
         if(!isNextMovePossible()){
             
             JOptionPane.showMessageDialog(this, "Its a DRAW");
-            reset();
+            reset(0);
             return;
         }
         
     }//GEN-LAST:event_eightjLabelMouseClicked
 
-    private void reset() {
+    private void reset(int i) {
         
-        //Train the SYSTEM
-        menaceHumanPlay.updateMenaceBeadsToTrain(menaceGame,whoStarts, true);
+        if(i==0){
+            //DRAW GAMES
+            states = new int[9];
+            resetImages();
+            menaceHumanPlay = new MenaceHumanPlay(menaceGame);
+            return;
+        }
+        //Train the SYSTEM-----BUUUUUUUGGGGGGGG
+        menaceHumanPlay.updateMenaceBeadsToTrain(menaceGame,whoStarts, systemWon);
         states = new int[9];
         resetImages();
         menaceHumanPlay = new MenaceHumanPlay(menaceGame);

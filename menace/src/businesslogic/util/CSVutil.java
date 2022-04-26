@@ -145,4 +145,70 @@ public class CSVutil {
         return beads;
     }
     
+    public static void writeTrainingStatusTofile(int totalGames, int systemWon, int drawCount) {
+        
+        try {
+            FileWriter fw = new FileWriter(MenaceConstants.MENACE_WINNING_STATUS_FILE_NAME, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw);
+
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(totalGames);
+            stringBuilder.append(",");
+            stringBuilder.append(systemWon);
+            stringBuilder.append(",");
+            stringBuilder.append(drawCount);
+            stringBuilder.append(",");
+            stringBuilder.append(totalGames-systemWon-drawCount);
+            
+            out.println(stringBuilder.toString());
+
+            
+            bw.close();
+            fw.close();
+            
+        }catch(Exception e) {
+            
+            logger.info("Error saving Winning states in a CSV file");
+            logger.info(e.getMessage());
+            
+        }
+        
+    }
+    
+    public static List<String> getGamesStatus() {
+        
+        List<String> gamesStatus = new ArrayList<>();
+        File file = new File(MenaceConstants.MENACE_WINNING_STATUS_FILE_NAME);
+        if(file.exists()) {
+            
+            FileReader fr = null;
+            BufferedReader br = null;
+
+            try {
+
+                fr = new FileReader(file);
+                br = new BufferedReader(fr);
+                while(br.ready()) {
+                    
+                    gamesStatus.add(br.readLine());
+                }
+                
+            } catch(Exception e) {
+
+            } finally {
+                try{
+                    fr.close();
+                    br.close();
+                }catch(Exception e){
+
+                    logger.error("Error closing file");
+                    logger.info("Error from exception :: "+ e.getMessage());
+                }
+            }
+        }
+        
+        return gamesStatus;
+    }
+    
 }

@@ -7,7 +7,10 @@ package userinterface.train;
 
 import businesslogic.model.MenaceGame;
 import businesslogic.logic.MenaceSelfTrain;
+import businesslogic.util.CSVutil;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import userinterface.MainJFrame;
@@ -31,6 +34,26 @@ public class TrainJPanel extends javax.swing.JPanel {
         this.mainJFrame=mainJFrame;
         this.menaceGame=menaceGame;
         initComponents();
+        displayTableContents();
+    }
+    
+    private void displayTableContents() {
+        
+        DefaultTableModel defaultTableModel = (DefaultTableModel) gamesHistoryjTable.getModel();
+        defaultTableModel.setRowCount(0);
+        
+        List<String> gameStatus = CSVutil.getGamesStatus();
+        for(String gameStat:gameStatus) {
+            
+            String[] game = gameStat.split(",");
+            Object[] row = new Object[4];
+            row[0] = Integer.valueOf(game[0]);
+            row[1] = Integer.valueOf(game[1]);
+            row[2] = Integer.valueOf(game[2]);
+            row[3] = Integer.valueOf(game[3]);
+            
+            defaultTableModel.addRow(row);
+        }
         
     }
 
@@ -45,8 +68,10 @@ public class TrainJPanel extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
         trainjbutton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        iterationsLabel = new javax.swing.JLabel();
         iterationsCountField = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        gamesHistoryjTable = new javax.swing.JTable();
 
         jButton1.setText("jButton1");
 
@@ -61,7 +86,7 @@ public class TrainJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Number of Iterations:");
+        iterationsLabel.setText("Number of Iterations:");
 
         iterationsCountField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         iterationsCountField.addActionListener(new java.awt.event.ActionListener() {
@@ -70,20 +95,54 @@ public class TrainJPanel extends javax.swing.JPanel {
             }
         });
 
+        gamesHistoryjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "GamesPlayed", "SystemWon", "Draw", "RandomWon"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        gamesHistoryjTable.getTableHeader().setResizingAllowed(false);
+        gamesHistoryjTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(gamesHistoryjTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(iterationsCountField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(198, 198, 198))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(243, 243, 243)
-                .addComponent(trainjbutton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(iterationsLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(iterationsCountField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(243, 243, 243)
+                        .addComponent(trainjbutton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,10 +150,12 @@ public class TrainJPanel extends javax.swing.JPanel {
                 .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(iterationsCountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(iterationsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(75, 75, 75)
                 .addComponent(trainjbutton)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addGap(73, 73, 73)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -104,6 +165,7 @@ public class TrainJPanel extends javax.swing.JPanel {
 
     private void trainjbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainjbuttonActionPerformed
 
+        trainjbutton.setVisible(false);
         String iterationCount= iterationsCountField.getText();
         int iterations =0;
         try{
@@ -116,15 +178,26 @@ public class TrainJPanel extends javax.swing.JPanel {
         } 
         
         MenaceSelfTrain menaceSelfTrain=new MenaceSelfTrain(menaceGame,iterations);
-        boolean status = menaceSelfTrain.selfPlay();
+        
+        try{
+            boolean status = menaceSelfTrain.selfPlay();
+        }catch(Exception e){
+            logger.info(e.getMessage());
+        }
+        
+        trainjbutton.setVisible(true);
+        iterationsCountField.setText("");
+        displayTableContents();
         
     }//GEN-LAST:event_trainjbuttonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable gamesHistoryjTable;
     private javax.swing.JTextField iterationsCountField;
+    private javax.swing.JLabel iterationsLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton trainjbutton;
     // End of variables declaration//GEN-END:variables
 
