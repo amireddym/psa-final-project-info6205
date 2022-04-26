@@ -4,6 +4,7 @@
  */
 package businesslogic.util;
 
+import businesslogic.model.Bead;
 import businesslogic.model.Beads;
 import businesslogic.model.MatchBox;
 import businesslogic.model.MenaceGame;
@@ -34,20 +35,38 @@ public class InitilaizeGame {
         matchBoxStates.add(new MatchBox(new int[]{0,0,0,0,1,0,0,0,0}));
         
         logger.info("Getting all possible states of the matchBoxes");
-        matchBoxStates = StateInitializer.getAllPossibleMatchBoxStates(matchBoxStates);
+        matchBoxStates = StateInitializer.getAllPossibleMatchBoxStates2(matchBoxStates);
         logger.info("Found no of MatchBox states ::: " + matchBoxStates.size());
         
-        for(MatchBox matchBox: matchBoxStates) {
-            System.out.println(matchBox.hashCode());
-        }
+//        for(MatchBox matchBox: matchBoxStates) {
+//            System.out.println(matchBox.hashCode());
+//        }
+        // Removing won states
+        matchBoxStates = StateInitializer.removeNotNeededStates(matchBoxStates);
+        logger.info("Final no of MatchBox states ::: " + matchBoxStates.size());
         
         logger.info("Adding all Bead states to the corresponding matchBox in a HashMap");
         Map<MatchBox,Beads> matchBoxes = StateInitializer.generateAllInitialMatchBoxStates(matchBoxStates);
+        
+        addInitalState(matchBoxes);
+        
         menaceTrainedState.setMatchBoxes(matchBoxes);
         MenaceGame menaceGame = new MenaceGame(menaceTrainedState);
         
         logger.info("Done creating all the MatchBox states and possible Beads");
         return menaceGame;
+    }
+
+    public static void addInitalState(Map<MatchBox, Beads> matchBoxes) {
+        
+        Beads beadState = new Beads();
+        List<Bead> beads = new ArrayList<>();
+        beads.add(new Bead(0));
+        beads.add(new Bead(1));
+        beads.add(new Bead(4));
+        beadState.setPositions(beads);
+        
+        matchBoxes.put(new MatchBox(new int[9]), beadState);
     }
     
 }

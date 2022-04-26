@@ -7,10 +7,11 @@ package businesslogic.logic;
 import businesslogic.model.Bead;
 import businesslogic.model.Beads;
 import businesslogic.model.MatchBox;
+import businesslogic.model.MatchingInfo;
 import businesslogic.model.MenaceGame;
-import businesslogic.util.StatePrinter;
+import businesslogic.util.MenaceConstants;
+import businesslogic.util.StateInitializer;
 import java.util.List;
-import javax.crypto.Mac;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,12 +35,26 @@ public class MenaceStateUpdater {
                     //TODO add to the beads state is Needed
                     int i=0;
                     int j=0;
-                    while(i<= menaceChosen.size()){
+                    while(i< menaceChosen.size()){
                         
-                        Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(currentState.get(i));
+                        //Find from the whole States and update it
+                        MatchBox matchBox = null;
+                        MatchingInfo matchingInfo = null;
+                        for(MatchBox matchbox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
+                            
+                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(i).getState().clone());
+                            if(matchingInfo.isMatched()){
+                                matchBox = matchbox;
+                                logger.info("Found MatchBox");
+                                break;
+                            }
+                        }
+                        int move = getActualState(menaceChosen.get(j), matchingInfo.getRotations(), matchingInfo.getFlips());
+                        
+                        Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox);
                         for(Bead bead:beads.getPositions()) {
-                            if(bead.getBoardPosition()== menaceChosen.get(j)){
-                                bead.setCurrentCount(bead.getCurrentCount()+1);
+                            if(bead.getBoardPosition()== move){
+                                bead.setCurrentCount(bead.getCurrentCount()+MenaceConstants.BETA);
                                 break;
                             }
                         }
@@ -51,12 +66,26 @@ public class MenaceStateUpdater {
                     //TODO remove to the bead state is Needed
                     int i=0;
                     int j=0;
-                    while(i<= menaceChosen.size()){
+                    while(i< menaceChosen.size()){
                         
-                        Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(currentState.get(i));
+                        //Find from the whole States and update it
+                        MatchBox matchBox = null;
+                        MatchingInfo matchingInfo = null;
+                        for(MatchBox matchbox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
+                            
+                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(i).getState().clone());
+                            if(matchingInfo.isMatched()){
+                                matchBox = matchbox;
+                                logger.info("Found MatchBox");
+                                break;
+                            }
+                        }
+                        int move = getActualState(menaceChosen.get(j), matchingInfo.getRotations(), matchingInfo.getFlips());
+                        
+                        Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox);
                         for(Bead bead:beads.getPositions()) {
-                            if(bead.getBoardPosition()== menaceChosen.get(j)){
-                                bead.setCurrentCount(bead.getCurrentCount()-1);
+                            if(bead.getBoardPosition()== move){
+                                bead.setCurrentCount(bead.getCurrentCount()-MenaceConstants.GAMMA);
                                 break;
                             }
                         }
@@ -70,12 +99,26 @@ public class MenaceStateUpdater {
                     //TODO remove to the bead state is Needed
                     int i=0;
                     int j=0;
-                    while(i<= menaceChosen.size()){
+                    while(i< menaceChosen.size()){
                         
-                        Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(currentState.get(i));
+                        //Find from the whole States and update it    
+                        MatchBox matchBox = null;
+                        MatchingInfo matchingInfo = null;
+                        for(MatchBox matchbox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
+                            
+                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(i).getState().clone());
+                            if(matchingInfo.isMatched()){
+                                matchBox = matchbox;
+                                logger.info("Found MatchBox");
+                                break;
+                            }
+                        }
+                        int move = getActualState(menaceChosen.get(j), matchingInfo.getRotations(), matchingInfo.getFlips());
+                        
+                        Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox);
                         for(Bead bead:beads.getPositions()) {
-                            if(bead.getBoardPosition()== menaceChosen.get(j)){
-                                bead.setCurrentCount(bead.getCurrentCount()-1);
+                            if(bead.getBoardPosition()== move){
+                                bead.setCurrentCount(bead.getCurrentCount()-MenaceConstants.GAMMA);
                                 break;
                             }
                         }
@@ -87,12 +130,26 @@ public class MenaceStateUpdater {
                     //TODO add to the bead state is Needed
                     int i=0;
                     int j=0;
-                    while(i<= menaceChosen.size()){
+                    while(i< menaceChosen.size()){
                         
-                        Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(currentState.get(i));
+                        //Find from the whole States and update it
+                        MatchBox matchBox = null;
+                        MatchingInfo matchingInfo = null;
+                        for(MatchBox matchbox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
+                            
+                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(i).getState().clone());
+                            if(matchingInfo.isMatched()){
+                                matchBox = matchbox;
+                                logger.info("Found MatchBox");
+                                break;
+                            }
+                        }
+                        int move = getActualState(menaceChosen.get(j), matchingInfo.getRotations(), matchingInfo.getFlips());
+                        
+                        Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox); 
                         for(Bead bead:beads.getPositions()) {
-                            if(bead.getBoardPosition()== menaceChosen.get(j)){
-                                bead.setCurrentCount(bead.getCurrentCount()+1);
+                            if(bead.getBoardPosition()== move){
+                                bead.setCurrentCount(bead.getCurrentCount()+MenaceConstants.ALPHA);
                                 break;
                             }
                         }
@@ -102,5 +159,52 @@ public class MenaceStateUpdater {
                 }   break;
         }
         
+    }
+    
+    public static int getActualState(int index, int rotations, int flips) {
+        
+        if(flips==1) {
+            
+            if(index==0) {
+                index=2;
+            }else if(index==3){
+                index=5;
+            }else if(index==6){
+                index=8;
+            }else if(index==2){
+                index=0;
+            }else if(index==5){
+                index=3;
+            }else if(index==8){
+                index=6;
+            }
+            
+        }
+        
+        rotations = 4-rotations;
+        while(rotations>0) {
+            
+            rotations = rotations-1;
+            if(index==1) {
+                index=5;
+            }else if(index==5){
+                index=7;
+            }else if(index==7){
+                index=3;
+            }else if(index==3){
+                index=1;
+            }else if(index==0){
+                index=2;
+            }else if(index==2){
+                index=8;
+            }else if(index==8){
+                index=6;
+            }else if(index==6){
+                index=0;
+            }
+            
+        }
+        
+        return index;
     }
 }

@@ -41,7 +41,7 @@ public class CSVutil {
         Set<MatchBox> matchBoxSet = stateMaps.keySet();
         
         try {
-            FileWriter fw = new FileWriter(MenaceConstants.MENACE_TRAINED_CONSTANTS_FILE_NAME, true);
+            FileWriter fw = new FileWriter(MenaceConstants.MENACE_TRAINED_CONSTANTS_FILE_NAME, false);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter out = new PrintWriter(bw);
 
@@ -73,7 +73,7 @@ public class CSVutil {
         File file = new File(MenaceConstants.MENACE_TRAINED_CONSTANTS_FILE_NAME);
         if(!file.exists()) {
             
-            logger.info("State file dosent exist at :: "+ file.getAbsolutePath());
+            logger.info("Trained State file dosent exist at :: "+ file.getAbsolutePath());
             try {
                 file.createNewFile();
                 menaceGame = InitilaizeGame.initialize();
@@ -121,7 +121,7 @@ public class CSVutil {
         return menaceGame;
     }
     
-    private static MatchBox getMatchBoxStateFromCsv(String[] csvState) {
+    public static MatchBox getMatchBoxStateFromCsv(String[] csvState) {
         
         int[] state = new int[9];
         for(int i=0; i<9;i++) {
@@ -130,14 +130,16 @@ public class CSVutil {
         return new MatchBox(state);
     }
     
-    private static Beads getBeadsStateFromCsv(String[] csvState) {
+    public static Beads getBeadsStateFromCsv(String[] csvState) {
         
         Beads beads  = new Beads();
         List<Bead> beadList = new ArrayList<>();
         for(int i=0;i<9;i++) {
             
-            Bead bead = new Bead(i,Integer.valueOf(csvState[i+9]));
-            beadList.add(bead);
+            if(Integer.valueOf(csvState[i+9]).intValue()!=0) { 
+                Bead bead = new Bead(i,Integer.valueOf(csvState[i+9]));
+                beadList.add(bead);
+            }
         }
         beads.setPositions(beadList);
         return beads;

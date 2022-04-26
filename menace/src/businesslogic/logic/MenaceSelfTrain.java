@@ -7,6 +7,7 @@ package businesslogic.logic;
 import businesslogic.model.Bead;
 import businesslogic.model.Beads;
 import businesslogic.model.MatchBox;
+import businesslogic.model.MatchingInfo;
 import businesslogic.model.MenaceGame;
 import businesslogic.util.CSVutil;
 import businesslogic.util.StateInitializer;
@@ -148,7 +149,7 @@ public class MenaceSelfTrain {
         }
         Random random = new Random();
         int ran = random.nextInt(count);
-        
+                
         //TODO update the chosen state
         if(gameStartedBySystem){
             lastState[freeStates.get(ran)]= 2;
@@ -165,32 +166,89 @@ public class MenaceSelfTrain {
         int[] lastState = currentState.get(currentState.size()-1).getState().clone();
         //TODO get Menacebeads by for loop
         MatchBox matchbox = null;
+        MatchingInfo matchingInfo = null;
         for(MatchBox matchBox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
-            if(matchBox.equals(currentState.get(currentState.size()-1))){
+            matchingInfo = StateInitializer.bothstatesAreSame(matchBox.getState().clone(),currentState.get(currentState.size()-1).getState().clone());
+            if(matchingInfo.isMatched()){
                 matchbox = matchBox;
                 logger.info("Found MatchBox");
                 break;
             }
-        }
+        }        
         if(matchbox == null) {
+            logger.info("**************NOT FOUND A MATCH BOX IN HASH************");
             StatePrinter.printState(lastState);
+            System.out.println(StatePrinter.getStateInCSVformat(lastState));
         }
+        
         //Replacing the one within HASH for easier access later
-        currentState.remove(currentState.size()-1);
-        currentState.add(matchbox);
+//        currentState.remove(currentState.size()-1);
+//        currentState.add(matchbox);
         Beads beadsState = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchbox);
         logger.info("Printing Beads probabilities");
         printBeadsProbablilityAndMakeMove(beadsState,menaceChosen);
+        
+        //ActualMove for the State
+        int moveActual = findActualmove(menaceChosen.get(menaceChosen.size()-1), matchingInfo.getRotations(), matchingInfo.getFlips());
+        menaceChosen.remove(menaceChosen.size()-1);
+        menaceChosen.add(moveActual);
+        
         if(gameStartedBySystem){
-            lastState[menaceChosen.get(menaceChosen.size()-1)] = 1;
+            lastState[moveActual] = 1;
         }else{
-            lastState[menaceChosen.get(menaceChosen.size()-1)] = 2;
+            lastState[moveActual] = 2;
         }
         
         // Need to optimize by taking the value from HASH-MAP rather than creating a new Object
         currentState.add(new MatchBox(lastState));
     }
 
+    public int findActualmove(int index, int rotations, int flips) {
+        
+        rotations = 4-rotations;
+        while(rotations>0) {
+            
+            rotations = rotations-1;
+            if(index==1) {
+                index=5;
+            }else if(index==5){
+                index=7;
+            }else if(index==7){
+                index=3;
+            }else if(index==3){
+                index=1;
+            }else if(index==0){
+                index=2;
+            }else if(index==2){
+                index=8;
+            }else if(index==8){
+                index=6;
+            }else if(index==6){
+                index=0;
+            }
+            
+        } 
+        if(flips==1) {
+            
+            if(index==0) {
+                index=2;
+            }else if(index==3){
+                index=5;
+            }else if(index==6){
+                index=8;
+            }else if(index==2){
+                index=0;
+            }else if(index==5){
+                index=3;
+            }else if(index==8){
+                index=6;
+            }
+            
+        }
+            
+        return index;
+    }
+    
     public void printBeadsProbablilityAndMakeMove(Beads beadsState, List<Integer> menaceChosen) {
         
         int sum = 0;
@@ -210,6 +268,8 @@ public class MenaceSelfTrain {
             randomNo-=beadsState.getPositions().get(chosenPosition+1).getCurrentCount();
             chosenPosition++;
         }while(randomNo>0);
+        
+        chosenPosition = beadsState.getPositions().get(chosenPosition).getBoardPosition();
         
         menaceChosen.add(chosenPosition);
     }
