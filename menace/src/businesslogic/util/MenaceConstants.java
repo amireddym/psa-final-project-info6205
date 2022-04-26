@@ -28,6 +28,9 @@ public class MenaceConstants {
     // File name to store the trained states in CSV
     public final static String MENACE_TRAINED_CONSTANTS_FILE_NAME = "trained.csv";
     
+    // File name to store the training outputs in CSV
+    public final static String MENACE_WINNING_STATUS_FILE_NAME = "winning.csv";
+    
     // File path for the Cross Image
     public final static String CROSS_IMAGE = "images/cross.png";
     

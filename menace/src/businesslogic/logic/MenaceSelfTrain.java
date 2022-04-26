@@ -12,7 +12,6 @@ import businesslogic.model.MenaceGame;
 import businesslogic.util.CSVutil;
 import businesslogic.util.StateInitializer;
 import businesslogic.util.StatePrinter;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -46,6 +45,9 @@ public class MenaceSelfTrain {
     
     public boolean selfPlay() {
         
+        int systemWonCount=0;
+        int drawCount=0;
+        
         for(int i=0; i< iterations; i++) {
            
            boolean gameOver = false;           
@@ -60,12 +62,14 @@ public class MenaceSelfTrain {
                    if(gameStatus!=0) {
                        logger.info("SYSYTEM WON");
                        gameOver=true;
+                       systemWonCount++;
                        break;
                    }
                    if(sumOfState(currentState.get(currentState.size()-1).getState())==13){
                        logger.info("GAME DRAW");
                        gameOver=true;
                        gameStatus=0;
+                       drawCount++;
                        break;
                    }
                    logger.info("Random is making a move");
@@ -80,6 +84,7 @@ public class MenaceSelfTrain {
                        logger.info("GAME DRAW");
                        gameOver=true;
                        gameStatus=0;
+                       drawCount++;
                        break;
                    }
                }else{
@@ -96,6 +101,7 @@ public class MenaceSelfTrain {
                        logger.info("GAME DRAW");
                        gameOver=true;
                        gameStatus=0;
+                       drawCount++;
                        break;
                    }
                    
@@ -105,12 +111,14 @@ public class MenaceSelfTrain {
                    if(gameStatus!=0) {
                        logger.info("SYSYTEM WON");
                        gameOver=true;
+                       systemWonCount++;
                        break;
                    }
                    if(sumOfState(currentState.get(currentState.size()-1).getState())==13){
                        logger.info("GAME DRAW");
                        gameOver=true;
                        gameStatus=0;
+                       drawCount++;
                        break;
                    }
                }
@@ -123,12 +131,15 @@ public class MenaceSelfTrain {
                logger.info(e.getMessage());
            }
            MenaceStateUpdater.updateMenaceBeadsToTrain(menaceGame, currentState, menaceChosen, gameStartedBySystem, gameStatus);
+           
            gameStartedBySystem=!gameStartedBySystem;
            gameStatus= -1;
            currentState = new ArrayList<>();
            menaceChosen = new ArrayList<>();
         }
         
+        logger.info("Total games: "+ iterations+", SystemWon: "+ systemWonCount+", Draw: "+ drawCount);
+        CSVutil.writeTrainingStatusTofile(iterations, systemWonCount, drawCount);
         CSVutil.writeTrainedStatesDataToCSV(menaceGame);
         
         return true;

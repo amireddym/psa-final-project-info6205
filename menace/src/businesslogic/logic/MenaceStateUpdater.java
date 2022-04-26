@@ -228,4 +228,163 @@ public class MenaceStateUpdater {
         
         return index;
     }
+    
+    public static void updateMenaceBeadsToTrainHuman(MenaceGame menaceGame, List<MatchBox> currentState, List<Integer> menaceChosen, 
+            boolean gameStartedBySystem, int gameStatus) {
+        
+        logger.info(":::::Updating states After Iterations::::::");
+        logger.info(" GameStartedBySystem --"+ gameStartedBySystem );
+        logger.info("Game status ::: "+ gameStatus);
+        logger.info("Menace chosen");
+        menaceChosen.forEach(System.out::println);
+        logger.info("States in the game");
+        currentState.forEach(System.out::println);
+        
+        switch (gameStatus) {
+            case 0:
+                return;
+            case 1:
+                if(gameStartedBySystem) {
+                    
+                    //TODO add to the beads state is Needed
+                    int i=0;
+                    int j=0;
+                    while(i< menaceChosen.size()){
+                        
+                        //Find from the whole States and update it
+                        MatchBox matchBox = null;
+                        MatchingInfo matchingInfo = null;
+                        for(MatchBox matchbox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
+                            
+                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(j).getState().clone());
+                            if(matchingInfo.isMatched()){
+                                matchBox = matchbox;
+                                logger.info("Found MatchBox");
+                                break;
+                            }
+                        }
+                        if(matchBox==null) {
+                            logger.info("Not found state :"+ StatePrinter.getStateInCSVformat(currentState.get(j).getState().clone()));
+                        }
+                        
+                        int move = getActualState(menaceChosen.get(i), matchingInfo.getRotations(), matchingInfo.getFlips());
+                        
+                        Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox);
+                        for(Bead bead:beads.getPositions()) {
+                            if(bead.getBoardPosition()== move){
+                                bead.setCurrentCount(bead.getCurrentCount()+MenaceConstants.BETA);
+                                break;
+                            }
+                        }
+                        i+=1;
+                        j+=1;
+                    }
+                }else{
+                    
+                    //TODO remove to the bead state is Needed
+                    int i=0;
+                    int j=0;
+                    while(i< menaceChosen.size()){
+                        
+                        //Find from the whole States and update it
+                        MatchBox matchBox = null;
+                        MatchingInfo matchingInfo = null;
+                        for(MatchBox matchbox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
+                            
+                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(j).getState().clone());
+                            if(matchingInfo.isMatched()){
+                                matchBox = matchbox;
+                                logger.info("Found MatchBox");
+                                break;
+                            }
+                        }
+                        if(matchBox==null) {
+                            logger.info("Not found state :"+ StatePrinter.getStateInCSVformat(currentState.get(j).getState().clone()));
+                        }
+                        int move = getActualState(menaceChosen.get(i), matchingInfo.getRotations(), matchingInfo.getFlips());
+                        
+                        Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox);
+                        for(Bead bead:beads.getPositions()) {
+                            if(bead.getBoardPosition()== move){
+                                bead.setCurrentCount(bead.getCurrentCount()-MenaceConstants.GAMMA);
+                                break;
+                            }
+                        }
+                        i+=1;
+                        j+=1;
+                    }
+                }   break;
+            default:
+                if(gameStartedBySystem) {
+                    
+                    //TODO remove to the bead state is Needed
+                    int i=0;
+                    int j=0;
+                    while(i< menaceChosen.size()){
+                        
+                        //Find from the whole States and update it    
+                        MatchBox matchBox = null;
+                        MatchingInfo matchingInfo = null;
+                        for(MatchBox matchbox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
+                            
+                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(j).getState().clone());
+                            if(matchingInfo.isMatched()){
+                                matchBox = matchbox;
+                                logger.info("Found MatchBox");
+                                break;
+                            }
+                        }
+                        if(matchBox==null) {
+                            logger.info("Not found state :"+ StatePrinter.getStateInCSVformat(currentState.get(j).getState().clone()));
+                        }
+                        int move = getActualState(menaceChosen.get(i), matchingInfo.getRotations(), matchingInfo.getFlips());
+                        
+                        Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox);
+                        for(Bead bead:beads.getPositions()) {
+                            if(bead.getBoardPosition()== move){
+                                bead.setCurrentCount(bead.getCurrentCount()-MenaceConstants.GAMMA);
+                                break;
+                            }
+                        }
+                        i+=1;
+                        j+=1;
+                    }
+                }else{
+                    
+                    //TODO add to the bead state is Needed
+                    int i=0;
+                    int j=0;
+                    while(i< menaceChosen.size()){
+                        
+                        //Find from the whole States and update it
+                        MatchBox matchBox = null;
+                        MatchingInfo matchingInfo = null;
+                        for(MatchBox matchbox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
+                            
+                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(j).getState().clone());
+                            if(matchingInfo.isMatched()){
+                                matchBox = matchbox;
+                                logger.info("Found MatchBox");
+                                break;
+                            }
+                        }
+                        if(matchBox==null) {
+                            logger.info("Not found state :"+ StatePrinter.getStateInCSVformat(currentState.get(j).getState().clone()));
+                        }
+                        int move = getActualState(menaceChosen.get(i), matchingInfo.getRotations(), matchingInfo.getFlips());
+                        
+                        Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox); 
+                        for(Bead bead:beads.getPositions()) {
+                            if(bead.getBoardPosition()== move){
+                                bead.setCurrentCount(bead.getCurrentCount()+MenaceConstants.ALPHA);
+                                break;
+                            }
+                        }
+                        i+=1;
+                        j+=1;
+                    }
+                }   break;
+        }
+        
+    }
 }
