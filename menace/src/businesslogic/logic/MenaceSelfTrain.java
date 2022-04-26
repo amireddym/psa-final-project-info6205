@@ -12,6 +12,7 @@ import businesslogic.model.MenaceGame;
 import businesslogic.util.CSVutil;
 import businesslogic.util.StateInitializer;
 import businesslogic.util.StatePrinter;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -116,9 +117,16 @@ public class MenaceSelfTrain {
                 
            }
            
+           try{
+               Thread.sleep(500L);
+           }catch(Exception e){
+               logger.info(e.getMessage());
+           }
            MenaceStateUpdater.updateMenaceBeadsToTrain(menaceGame, currentState, menaceChosen, gameStartedBySystem, gameStatus);
            gameStartedBySystem=!gameStartedBySystem;
            gameStatus= -1;
+           currentState = new ArrayList<>();
+           menaceChosen = new ArrayList<>();
         }
         
         CSVutil.writeTrainedStatesDataToCSV(menaceGame);

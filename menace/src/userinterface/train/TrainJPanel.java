@@ -45,7 +45,7 @@ public class TrainJPanel extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
         trainjbutton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        iterationsLabel = new javax.swing.JLabel();
         iterationsCountField = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
@@ -61,7 +61,7 @@ public class TrainJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Number of Iterations:");
+        iterationsLabel.setText("Number of Iterations:");
 
         iterationsCountField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         iterationsCountField.addActionListener(new java.awt.event.ActionListener() {
@@ -75,15 +75,16 @@ public class TrainJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(iterationsCountField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(198, 198, 198))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(243, 243, 243)
-                .addComponent(trainjbutton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(iterationsLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(iterationsCountField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(243, 243, 243)
+                        .addComponent(trainjbutton)))
+                .addContainerGap(300, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,10 +92,10 @@ public class TrainJPanel extends javax.swing.JPanel {
                 .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(iterationsCountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(iterationsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(75, 75, 75)
                 .addComponent(trainjbutton)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -104,6 +105,7 @@ public class TrainJPanel extends javax.swing.JPanel {
 
     private void trainjbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainjbuttonActionPerformed
 
+        trainjbutton.setVisible(false);
         String iterationCount= iterationsCountField.getText();
         int iterations =0;
         try{
@@ -116,15 +118,22 @@ public class TrainJPanel extends javax.swing.JPanel {
         } 
         
         MenaceSelfTrain menaceSelfTrain=new MenaceSelfTrain(menaceGame,iterations);
-        boolean status = menaceSelfTrain.selfPlay();
+        
+        try{
+            menaceSelfTrain.selfPlay();
+        }catch(Exception e){
+            logger.info(e.getMessage());
+        }
+        
+        trainjbutton.setVisible(true);
         
     }//GEN-LAST:event_trainjbuttonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField iterationsCountField;
+    private javax.swing.JLabel iterationsLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton trainjbutton;
     // End of variables declaration//GEN-END:variables
 
