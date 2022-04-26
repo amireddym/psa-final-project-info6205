@@ -224,14 +224,6 @@ public class MenaceStateUpdater {
     public static void updateMenaceBeadsToTrainHuman(MenaceGame menaceGame, List<MatchBox> currentState, List<Integer> menaceChosen, 
             boolean gameStartedBySystem, int gameStatus) {
         
-        logger.info(":::::Updating states After Iterations::::::");
-        logger.info(" GameStartedBySystem --"+ gameStartedBySystem );
-        logger.info("Game status ::: "+ gameStatus);
-        logger.info("Menace chosen");
-        menaceChosen.forEach(System.out::println);
-        logger.info("States in the game");
-        currentState.forEach(System.out::println);
-        
         switch (gameStatus) {
             case 0:
                 return;
