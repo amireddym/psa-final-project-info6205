@@ -11,6 +11,7 @@ import businesslogic.model.MatchingInfo;
 import businesslogic.model.MenaceGame;
 import businesslogic.util.MenaceConstants;
 import businesslogic.util.StateInitializer;
+import businesslogic.util.StatePrinter;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,14 @@ public class MenaceStateUpdater {
     
     public static void updateMenaceBeadsToTrain(MenaceGame menaceGame, List<MatchBox> currentState, List<Integer> menaceChosen, 
             boolean gameStartedBySystem, int gameStatus) {
+        
+        logger.info(":::::Updating states After Iterations::::::");
+        logger.info(" GameStartedBySystem --"+ gameStartedBySystem );
+        logger.info("Game status ::: "+ gameStatus);
+        logger.info("Menace chosen");
+        menaceChosen.forEach(System.out::println);
+        logger.info("States in the game");
+        currentState.forEach(System.out::println);
         
         switch (gameStatus) {
             case 0:
@@ -42,14 +51,18 @@ public class MenaceStateUpdater {
                         MatchingInfo matchingInfo = null;
                         for(MatchBox matchbox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
                             
-                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(i).getState().clone());
+                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(j).getState().clone());
                             if(matchingInfo.isMatched()){
                                 matchBox = matchbox;
                                 logger.info("Found MatchBox");
                                 break;
                             }
                         }
-                        int move = getActualState(menaceChosen.get(j), matchingInfo.getRotations(), matchingInfo.getFlips());
+                        if(matchBox==null) {
+                            logger.info("Not found state :"+ StatePrinter.getStateInCSVformat(currentState.get(j).getState().clone()));
+                        }
+                        
+                        int move = getActualState(menaceChosen.get(i), matchingInfo.getRotations(), matchingInfo.getFlips());
                         
                         Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox);
                         for(Bead bead:beads.getPositions()) {
@@ -58,14 +71,14 @@ public class MenaceStateUpdater {
                                 break;
                             }
                         }
-                        i+=2;
-                        j++;
+                        i+=1;
+                        j+=2;
                     }
                 }else{
                     
                     //TODO remove to the bead state is Needed
                     int i=0;
-                    int j=0;
+                    int j=1;
                     while(i< menaceChosen.size()){
                         
                         //Find from the whole States and update it
@@ -73,14 +86,17 @@ public class MenaceStateUpdater {
                         MatchingInfo matchingInfo = null;
                         for(MatchBox matchbox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
                             
-                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(i).getState().clone());
+                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(j).getState().clone());
                             if(matchingInfo.isMatched()){
                                 matchBox = matchbox;
                                 logger.info("Found MatchBox");
                                 break;
                             }
                         }
-                        int move = getActualState(menaceChosen.get(j), matchingInfo.getRotations(), matchingInfo.getFlips());
+                        if(matchBox==null) {
+                            logger.info("Not found state :"+ StatePrinter.getStateInCSVformat(currentState.get(j).getState().clone()));
+                        }
+                        int move = getActualState(menaceChosen.get(i), matchingInfo.getRotations(), matchingInfo.getFlips());
                         
                         Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox);
                         for(Bead bead:beads.getPositions()) {
@@ -89,8 +105,8 @@ public class MenaceStateUpdater {
                                 break;
                             }
                         }
-                        i+=2;
-                        j++;
+                        i+=1;
+                        j+=2;
                     }
                 }   break;
             default:
@@ -106,14 +122,17 @@ public class MenaceStateUpdater {
                         MatchingInfo matchingInfo = null;
                         for(MatchBox matchbox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
                             
-                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(i).getState().clone());
+                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(j).getState().clone());
                             if(matchingInfo.isMatched()){
                                 matchBox = matchbox;
                                 logger.info("Found MatchBox");
                                 break;
                             }
                         }
-                        int move = getActualState(menaceChosen.get(j), matchingInfo.getRotations(), matchingInfo.getFlips());
+                        if(matchBox==null) {
+                            logger.info("Not found state :"+ StatePrinter.getStateInCSVformat(currentState.get(j).getState().clone()));
+                        }
+                        int move = getActualState(menaceChosen.get(i), matchingInfo.getRotations(), matchingInfo.getFlips());
                         
                         Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox);
                         for(Bead bead:beads.getPositions()) {
@@ -122,14 +141,14 @@ public class MenaceStateUpdater {
                                 break;
                             }
                         }
-                        i+=2;
-                        j++;
+                        i+=1;
+                        j+=2;
                     }
                 }else{
                     
                     //TODO add to the bead state is Needed
                     int i=0;
-                    int j=0;
+                    int j=1;
                     while(i< menaceChosen.size()){
                         
                         //Find from the whole States and update it
@@ -137,14 +156,17 @@ public class MenaceStateUpdater {
                         MatchingInfo matchingInfo = null;
                         for(MatchBox matchbox:menaceGame.getMenaceTrainedState().getMatchBoxes().keySet()){
                             
-                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(i).getState().clone());
+                            matchingInfo = StateInitializer.bothstatesAreSame(matchbox.getState().clone(),currentState.get(j).getState().clone());
                             if(matchingInfo.isMatched()){
                                 matchBox = matchbox;
                                 logger.info("Found MatchBox");
                                 break;
                             }
                         }
-                        int move = getActualState(menaceChosen.get(j), matchingInfo.getRotations(), matchingInfo.getFlips());
+                        if(matchBox==null) {
+                            logger.info("Not found state :"+ StatePrinter.getStateInCSVformat(currentState.get(j).getState().clone()));
+                        }
+                        int move = getActualState(menaceChosen.get(i), matchingInfo.getRotations(), matchingInfo.getFlips());
                         
                         Beads beads = menaceGame.getMenaceTrainedState().getMatchBoxes().get(matchBox); 
                         for(Bead bead:beads.getPositions()) {
@@ -153,8 +175,8 @@ public class MenaceStateUpdater {
                                 break;
                             }
                         }
-                        i+=2;
-                        j++;
+                        i+=1;
+                        j+=2;
                     }
                 }   break;
         }
@@ -181,7 +203,6 @@ public class MenaceStateUpdater {
             
         }
         
-        rotations = 4-rotations;
         while(rotations>0) {
             
             rotations = rotations-1;
