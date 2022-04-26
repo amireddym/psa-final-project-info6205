@@ -121,7 +121,7 @@ public class CSVutil {
         return menaceGame;
     }
     
-    private static MatchBox getMatchBoxStateFromCsv(String[] csvState) {
+    public static MatchBox getMatchBoxStateFromCsv(String[] csvState) {
         
         int[] state = new int[9];
         for(int i=0; i<9;i++) {
@@ -130,7 +130,7 @@ public class CSVutil {
         return new MatchBox(state);
     }
     
-    private static Beads getBeadsStateFromCsv(String[] csvState) {
+    public static Beads getBeadsStateFromCsv(String[] csvState) {
         
         Beads beads  = new Beads();
         List<Bead> beadList = new ArrayList<>();

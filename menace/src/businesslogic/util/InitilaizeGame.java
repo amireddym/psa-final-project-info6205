@@ -57,7 +57,7 @@ public class InitilaizeGame {
         return menaceGame;
     }
 
-    private static void addInitalState(Map<MatchBox, Beads> matchBoxes) {
+    public static void addInitalState(Map<MatchBox, Beads> matchBoxes) {
         
         Beads beadState = new Beads();
         List<Bead> beads = new ArrayList<>();
