@@ -44,7 +44,7 @@ public class MenaceSelfTrain {
     }
     
     public boolean selfPlay() {
-        
+                
         int systemWonCount=0;
         int drawCount=0;
         

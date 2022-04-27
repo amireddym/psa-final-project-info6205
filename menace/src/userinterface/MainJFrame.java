@@ -7,6 +7,7 @@ package userinterface;
 import businesslogic.model.MenaceGame;
 import businesslogic.util.CSVutil;
 import businesslogic.util.DB4OUtil;
+import businesslogic.util.LoggerUtils;
 import javax.swing.JButton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,7 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     
-    private static final Logger logger = LoggerFactory.getLogger(MainJFrame.class);
+    private static final Logger logger = LoggerUtils.getLogger(MainJFrame.class.getName());
 //    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     private MenaceGame menaceGame;
     
@@ -155,6 +156,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         logger.info("Windowclosed");
+        
 //        dB4OUtil.storeGameState(menaceGame);
     }//GEN-LAST:event_formWindowClosing
 
