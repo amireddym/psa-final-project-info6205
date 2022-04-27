@@ -125,11 +125,7 @@ public class MenaceSelfTrain {
                 
            }
            
-           try{
-               Thread.sleep(500L);
-           }catch(Exception e){
-               logger.info(e.getMessage());
-           }
+           CSVutil.writeTrainingStatusTofile(iterations, systemWonCount, drawCount);
            MenaceStateUpdater.updateMenaceBeadsToTrain(menaceGame, currentState, menaceChosen, gameStartedBySystem, gameStatus);
            
            gameStartedBySystem=!gameStartedBySystem;
@@ -139,7 +135,7 @@ public class MenaceSelfTrain {
         }
         
         logger.info("Total games: "+ iterations+", SystemWon: "+ systemWonCount+", Draw: "+ drawCount);
-        CSVutil.writeTrainingStatusTofile(iterations, systemWonCount, drawCount);
+//        CSVutil.writeTrainingStatusTofile(iterations, systemWonCount, drawCount);
         CSVutil.writeTrainedStatesDataToCSV(menaceGame);
         
         return true;
