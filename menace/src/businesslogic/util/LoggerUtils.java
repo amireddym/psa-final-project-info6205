@@ -28,7 +28,7 @@ public class LoggerUtils {
 
         context.putProperty("application-name", "MENACE");
         try {
-            jc.doConfigure("log.xml");
+            jc.doConfigure("xml/log.xml");
         } catch (JoranException ex) {
             java.util.logging.Logger.getLogger(LoggerUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
