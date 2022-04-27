@@ -17,7 +17,7 @@ public class MenaceConstants {
     public final static int BETA = 1;
     
     // No of Beads removed from Matchbox in state of LOSS 
-    public final static int GAMMA = 1;
+    public final static int GAMMA = 2;
     
     // No of Beads adjusted in Matchbox in state of DRAW
     public final static int DELTA = 0;
