@@ -29,6 +29,10 @@ Menace(aka. Tic-Tac-Toe) game is a two-player game, where players takes turn by 
 * Please bear with the performance of the System. As of now it is not optimized fully.
 * Currently the built jar under dist folder is not a fat jar. So don't try to directly run it. It throws error on the dependency.
 
+# Contributions Info
+* There is an issue with the Git stats as everyone is using different systems to commit as time passed and with inconsistency of the mail ids. Please use the below command to properly identify each individual contributions.
+* git shortlog --summary --numbered --email
+* We tried our best to use mailmap to identify this and fix it. Lets hope it really works.
 # Contact Info
 * Manoj Reddy Amireddy (mailto:amireddy.m@northeastern.edu)
 * Anshita Verma (mailto:verma.ans@northeastern.edu)
