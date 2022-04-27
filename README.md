@@ -17,7 +17,6 @@ Menace(aka. Tic-Tac-Toe) game is a two-player game, where players takes turn by 
 * Log file can be found inside the log folder.
 * It logs every event that happens in the system, Both the training and the human interaction with the System.
 
-
 # States
 * The information regarding the training is stored in the winning.csv file in the following format.
 * GamesPlayed,SystemWon,Draw,RandomMoveWon (ex- 50,26,13,11)
@@ -34,3 +33,4 @@ Menace(aka. Tic-Tac-Toe) game is a two-player game, where players takes turn by 
 * Manoj Reddy Amireddy (mailto:amireddy.m@northeastern.edu)
 * Anshita Verma (mailto:verma.ans@northeastern.edu)
 * Varun
+
