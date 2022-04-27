@@ -10,6 +10,7 @@ import businesslogic.model.MatchBox;
 import businesslogic.model.MatchingInfo;
 import businesslogic.model.MenaceGame;
 import businesslogic.util.CSVutil;
+import businesslogic.util.MenaceConstants;
 import businesslogic.util.StateInitializer;
 import businesslogic.util.StatePrinter;
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class MenaceSelfTrain {
                 
         int systemWonCount=0;
         int drawCount=0;
+        int randomBound=(int)(MenaceConstants.PERCENTAGE*iterations);
         
         for(int i=0; i< iterations; i++) {
            

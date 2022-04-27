@@ -1,7 +1,7 @@
 # psa-final-project-info6205
 
 # Menace Game
-Menace(aka. Tic-Tac-Toe) game is a two-player game, where players takes turn by marking 0's and X's in a 3x3 grid. Here one player is Human(User) and second player Machine, which have been trained to play through Reinforcement Learning.
+Menace(aka. Tic-Tac-Toe) game is a two-player game, where players takes turn by marking 0's and X's in a 3x3 grid. Here one player is Human(User) and second player Machine, which have been trained to play through Reinforcement Learning(Not exactly but somewhat similar).
 
 # Instructions to Run Program
 * clone the repository https://github.com/amireddym/psa-final-project-info6205.git
@@ -27,6 +27,7 @@ Menace(aka. Tic-Tac-Toe) game is a two-player game, where players takes turn by 
   
 # Additional Info
 * Please feel free to suggest changes.
+* As of now we are training with the either System and Random Mover alternatively. So in order to train the System better please use high value of Iterations while training.
 * Please bear with the performance of the System. As of now it is not optimized fully.
 * Currently the built jar under dist folder is not a fat jar. So don't try to directly run it. It throws error on the dependency.
 
