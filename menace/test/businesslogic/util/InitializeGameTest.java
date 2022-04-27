@@ -26,11 +26,11 @@ public class InitializeGameTest {
         assertNotNull(menaceGame);
         assertNotNull(menaceGame.getMenaceTrainedState());
         assertNotNull(menaceGame.getMenaceTrainedState().getMatchBoxes());
-        Assert.assertEquals(menaceGame.getMenaceTrainedState().getMatchBoxes().size(), 631);
+        Assert.assertEquals(menaceGame.getMenaceTrainedState().getMatchBoxes().size(), 630);
     }
     
     @Test
-    public void addaddInitalState() {
+    public void addInitalStateTest() {
         
         Map<MatchBox, Beads> matchBoxes = new HashMap<>();
         InitilaizeGame.addInitalState(matchBoxes);
