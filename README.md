@@ -7,6 +7,7 @@ Menace(aka. Tic-Tac-Toe) game is a two-player game, where players takes turn by 
 * clone the repository https://github.com/amireddym/psa-final-project-info6205.git
 * Open the repo in NETBEANS IDE (Preffered)
 * Run the Application by clicking the run icon in the IDE or by running the main function in MainJFrame class
+* Don't try to run the built jar as it is not a fat jar.
 
 # Dependencies
 * This application depends on Java 1.8 version
@@ -30,11 +31,10 @@ Menace(aka. Tic-Tac-Toe) game is a two-player game, where players takes turn by 
 * Currently the built jar under dist folder is not a fat jar. So don't try to directly run it. It throws error on the dependency.
 
 # Contributions Info
-* There is an issue with the Git stats as everyone is using different systems to commit as time passed and with inconsistency of the mail ids. Please use the below command to properly identify each individual contributions.
+* There is an issue with the Git stats as everyone is using different systems to commit as time passed and with inconsistency of the mail ids. Please use the below command to properly identify each individual.
 * git shortlog --summary --numbered --email
 * We tried our best to use mailmap to identify this and fix it. Lets hope it really works.
 # Contact Info
 * Manoj Reddy Amireddy (mailto:amireddy.m@northeastern.edu)
 * Anshita Verma (mailto:verma.ans@northeastern.edu)
 * Varun
-
