@@ -27,6 +27,7 @@ Menace(aka. Tic-Tac-Toe) game is a two-player game, where players takes turn by 
   
 # Additional Info
 * Please feel free to suggest changes.
+* As of now we are training with the either System and Random Mover alternatively. So in order to train the System better please use high value of Iterations while training.
 * Please bear with the performance of the System. As of now it is not optimized fully.
 * Currently the built jar under dist folder is not a fat jar. So don't try to directly run it. It throws error on the dependency.
 

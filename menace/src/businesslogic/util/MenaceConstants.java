@@ -22,6 +22,9 @@ public class MenaceConstants {
     // No of Beads adjusted in Matchbox in state of DRAW
     public final static int DELTA = 0;
     
+    // Percentage (p) for the trainig set
+    public final static double PERCENTAGE = 0.9;
+    
     // String to Welcome User in UI
     public final static String GREET_USER = "Welcome to Menace";
     

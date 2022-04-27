@@ -166,6 +166,7 @@ public class TrainJPanel extends javax.swing.JPanel {
     private void trainjbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainjbuttonActionPerformed
 
         trainjbutton.setVisible(false);
+        mainJFrame.getPlayjButton().setVisible(false);
         String iterationCount= iterationsCountField.getText();
         int iterations =0;
         try{
@@ -188,7 +189,7 @@ public class TrainJPanel extends javax.swing.JPanel {
         trainjbutton.setVisible(true);
         iterationsCountField.setText("");
         displayTableContents();
-        
+        mainJFrame.getPlayjButton().setVisible(true);
     }//GEN-LAST:event_trainjbuttonActionPerformed
 
 
