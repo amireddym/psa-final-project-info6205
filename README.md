@@ -8,12 +8,20 @@ Menace(aka. Tic-Tac-Toe) game is a two-player game, where players takes turn by 
 * Open the repo in NETBEANS IDE (Preffered)
 * Run the Application by clicking the run icon in the IDE or by running the main function in MainJFrame class
 * Don't try to run the built jar as it is not a fat jar.
+* In order to train the System from starting, You are free to delete the Csv files in the folder.
+* To Play against the trained menace click the play button on the left panel.
+* You will be prompted to choose whether to take the move first or not and thats it. You can start playing against the System. Hope you like it :blush:
 
 # Dependencies
 * This application depends on Java 1.8 version
 * Also has dependency on slf4j,logback jars for logging and Junit for test cases.
 * It loads the log.xml file to load its configuration for logging.
 
+# Training
+* To train the system in the train UI enter the No of Games it has to play against a Random Choice chooser.
+* In the training the game is Started by System and Random gamer alternatively. If System started first then the next game is started by Random chooser.
+* In order tot train the system efficiently please run the system for more no of games. As it tries to train all the distinct MatchBoxes.
+* Our Menace dosen't have a constraint whether it starts first or the User. Since we are training for every State.
 # Logs 
 * Log file can be found inside the log folder.
 * It logs every event that happens in the system, Both the training and the human interaction with the System.
