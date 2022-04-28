@@ -12,6 +12,24 @@ Menace(aka. Tic-Tac-Toe) game is a two-player game, where players takes turn by 
 * To Play against the trained menace click the play button on the left panel.
 * You will be prompted to choose whether to take the move first or not and thats it. You can start playing against the System. Hope you like it :blush:
 
+# Game UI
+* Landing page UI
+![UI](gameUI/001.png?raw=true "Starting UI")
+* Training page UI
+![UI](gameUI/002.png?raw=true "Training UI")
+* Play button click UI
+![UI](gameUI/003.png?raw=true "Training UI")
+* Play landing page UI
+![UI](gameUI/004.png?raw=true "Training UI")
+* Game UI
+![UI](gameUI/005.png?raw=true "Training UI")
+* User Won UI
+![UI](gameUI/006.png?raw=true "Training UI")
+* User Defeat UI
+![UI](gameUI/007.png?raw=true "Training UI")
+* Game Draw UI
+![UI](gameUI/008.png?raw=true "Training UI")
+
 # Dependencies
 * This application depends on Java 1.8 version
 * Also has dependency on slf4j,logback jars for logging and Junit for test cases.
