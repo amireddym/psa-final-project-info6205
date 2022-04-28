@@ -39,6 +39,7 @@ public class TrainJPanel extends javax.swing.JPanel {
     
     private void displayTableContents() {
         
+        logger.info("Displaying details in the table");
         DefaultTableModel defaultTableModel = (DefaultTableModel) gamesHistoryjTable.getModel();
         defaultTableModel.setRowCount(0);
         
@@ -181,6 +182,7 @@ public class TrainJPanel extends javax.swing.JPanel {
         MenaceSelfTrain menaceSelfTrain=new MenaceSelfTrain(menaceGame,iterations);
         
         try{
+            logger.info("Calling api to play and train for iterations :: "+ iterationCount);
             boolean status = menaceSelfTrain.selfPlay();
         }catch(Exception e){
             logger.info(e.getMessage());

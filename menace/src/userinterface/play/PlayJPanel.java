@@ -669,6 +669,7 @@ public class PlayJPanel extends javax.swing.JPanel {
             states = new int[9];
             resetImages();
             menaceHumanPlay = new MenaceHumanPlay(menaceGame);
+            mainJFrame.getMainjSplitPane().setRightComponent(new PlayJPanel(menaceGame, mainJFrame));
             return;
         }
         //Train the SYSTEM-----BUUUUUUUGGGGGGGG

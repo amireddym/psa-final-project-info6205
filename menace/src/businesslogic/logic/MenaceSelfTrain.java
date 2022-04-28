@@ -128,6 +128,7 @@ public class MenaceSelfTrain {
            }
            
 //           CSVutil.writeTrainingStatusTofile(iterations, systemWonCount, drawCount);
+           logger.info("Updating the MatchBox Beads statues for training");
            MenaceStateUpdater.updateMenaceBeadsToTrain(menaceGame, currentState, menaceChosen, gameStartedBySystem, gameStatus);
            
            gameStartedBySystem=!gameStartedBySystem;
@@ -156,6 +157,8 @@ public class MenaceSelfTrain {
     public void makeMoveRandom(List<MatchBox> currentState) {
         
         int[] lastState = currentState.get(currentState.size()-1).getState().clone();
+        logger.info("Current state for the Random gamer to play upon ");
+        logger.info(StatePrinter.getStateInCSVformat(lastState));
         int count = 0;
         List<Integer> freeStates = new ArrayList<>();
         for(int i=0;i<9;i++){
@@ -166,7 +169,7 @@ public class MenaceSelfTrain {
         }
         Random random = new Random();
         int ran = random.nextInt(count);
-                
+        logger.info("Random Gamer has chosen ::: "+ran);
         //TODO update the chosen state
         if(gameStartedBySystem){
             lastState[freeStates.get(ran)]= 2;
@@ -195,7 +198,7 @@ public class MenaceSelfTrain {
         if(matchbox == null) {
             logger.info("**************NOT FOUND A MATCH BOX IN HASH************");
             StatePrinter.printState(lastState);
-            System.out.println(StatePrinter.getStateInCSVformat(lastState));
+            logger.info(StatePrinter.getStateInCSVformat(lastState));
         }
         
         //Replacing the one within HASH for easier access later
@@ -207,6 +210,7 @@ public class MenaceSelfTrain {
         
         //ActualMove for the State
         int moveActual = findActualmove(menaceChosen.get(menaceChosen.size()-1), matchingInfo.getRotations(), matchingInfo.getFlips());
+        logger.info("Menace has chosen randomly this from the MatchBox ::: "+ moveActual);
         menaceChosen.remove(menaceChosen.size()-1);
         menaceChosen.add(moveActual);
         
