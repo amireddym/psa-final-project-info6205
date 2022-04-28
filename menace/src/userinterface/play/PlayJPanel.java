@@ -8,10 +8,12 @@ import businesslogic.logic.MenaceHumanPlay;
 import businesslogic.model.MenaceGame;
 import businesslogic.util.MenaceConstants;
 import businesslogic.util.StateInitializer;
+import java.awt.Component;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import userinterface.MainJFrame;
 
 /**
  *
@@ -31,9 +33,18 @@ public class PlayJPanel extends javax.swing.JPanel {
     
     private MenaceHumanPlay menaceHumanPlay;
     
-    public PlayJPanel(MenaceGame menaceGame) {
+    private MainJFrame mainJFrame;
+    
+    public PlayJPanel(MenaceGame menaceGame, MainJFrame mainJFrame) {
         
         this.menaceGame=menaceGame;
+        this.mainJFrame=mainJFrame;
+        Component[] components = mainJFrame.getMainjSplitPane().getComponents();
+        if(components.length>1){
+            Component[] component = new Component[1];
+            component[0] = components[components.length-1];
+            components = component;
+        }
         states = new int[9];
         menaceHumanPlay = new MenaceHumanPlay(menaceGame);
         whoStarts = JOptionPane.showConfirmDialog(this, this, "Do you want to StartFirst", 0);
@@ -665,8 +676,7 @@ public class PlayJPanel extends javax.swing.JPanel {
         states = new int[9];
         resetImages();
         menaceHumanPlay = new MenaceHumanPlay(menaceGame);
-        
-        
+        mainJFrame.getMainjSplitPane().setRightComponent(new PlayJPanel(menaceGame, mainJFrame));
     }
     
     private void resetImages() {
