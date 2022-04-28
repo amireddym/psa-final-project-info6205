@@ -11,7 +11,6 @@ import businesslogic.model.MatchingInfo;
 import businesslogic.model.MenaceGame;
 import businesslogic.util.StateInitializer;
 import businesslogic.util.StatePrinter;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -41,10 +40,12 @@ public class MenaceHumanPlay {
     public int makeMove(int[] states, int whoStarted) {
        
         int[] state = states.clone();
+        logger.info("Current state before the system "+ StatePrinter.getStateInCSVformat(state));
         
         //get move from trained state
         int index = getSystemMove(state);
         
+        logger.info("System has chosen the position :: "+ index);
         // update states and add to currentstate and menace chosen
         if(whoStarted==0){
             state[index]=2;

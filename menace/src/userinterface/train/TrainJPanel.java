@@ -39,6 +39,7 @@ public class TrainJPanel extends javax.swing.JPanel {
     
     private void displayTableContents() {
         
+        logger.info("Displaying details in the table");
         DefaultTableModel defaultTableModel = (DefaultTableModel) gamesHistoryjTable.getModel();
         defaultTableModel.setRowCount(0);
         
@@ -166,6 +167,7 @@ public class TrainJPanel extends javax.swing.JPanel {
     private void trainjbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trainjbuttonActionPerformed
 
         trainjbutton.setVisible(false);
+        mainJFrame.getPlayjButton().setVisible(false);
         String iterationCount= iterationsCountField.getText();
         int iterations =0;
         try{
@@ -180,6 +182,7 @@ public class TrainJPanel extends javax.swing.JPanel {
         MenaceSelfTrain menaceSelfTrain=new MenaceSelfTrain(menaceGame,iterations);
         
         try{
+            logger.info("Calling api to play and train for iterations :: "+ iterationCount);
             boolean status = menaceSelfTrain.selfPlay();
         }catch(Exception e){
             logger.info(e.getMessage());
@@ -188,7 +191,7 @@ public class TrainJPanel extends javax.swing.JPanel {
         trainjbutton.setVisible(true);
         iterationsCountField.setText("");
         displayTableContents();
-        
+        mainJFrame.getPlayjButton().setVisible(true);
     }//GEN-LAST:event_trainjbuttonActionPerformed
 
 

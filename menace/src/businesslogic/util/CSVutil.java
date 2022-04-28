@@ -34,6 +34,7 @@ public class CSVutil {
     
     public static void writeTrainedStatesDataToCSV(MenaceGame menaceGame) {
         
+        logger.info("Flushing the trained MatchBox states to CSV");
         //TODO add code to write states in CSV in state,beads pattern
         MenaceTrainedState menaceTrainedState = menaceGame.getMenaceTrainedState();
         Map<MatchBox, Beads> stateMaps = menaceTrainedState.getMatchBoxes();
@@ -146,6 +147,8 @@ public class CSVutil {
     }
     
     public static void writeTrainingStatusTofile(int totalGames, int systemWon, int drawCount) {
+        
+        logger.info("Flushing the Training stats to CSV");
         
         try {
             FileWriter fw = new FileWriter(MenaceConstants.MENACE_WINNING_STATUS_FILE_NAME, true);
